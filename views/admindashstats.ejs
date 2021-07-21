@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link rel="icon" type="text/css" href="img/SIES_Spinner.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
+  <link rel="stylesheet" href="css/new1.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <title>SIES GST Placements</title>
+  <style>
+    .sectionClass {
+  padding: 20px 0px 50px 0px;
+  position: relative;
+  display: block;
+}
+
+.fullWidth {
+  width: 100% !important;
+  display: table;
+  float: none;
+  padding: 0;
+  min-height: 1px;
+  height: 100%;
+  position: relative;
+}
+
+
+.sectiontitle {
+  background-position: center;
+  margin: 30px 0 0px;
+  text-align: center;
+  min-height: 20px;
+}
+
+.sectiontitle h2 {
+  font-size: 30px;
+  color: #222;
+  margin-bottom: 0px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+
+.headerLine {
+  width: 160px;
+  height: 2px;
+  display: inline-block;
+  background: #101F2E;
+}
+
+
+.projectFactsWrap{
+    display: flex;
+  margin-top: 30px;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+
+#projectFacts .fullWidth{
+  padding: 0;
+}
+
+.projectFactsWrap .item{
+  width: 25%;
+  height: 100%;
+  padding: 50px 0px;
+  text-align: center;
+}
+
+.projectFactsWrap .item:nth-child(1){
+  background: rgb(6,132,129);
+}
+
+.projectFactsWrap .item:nth-child(2){
+  background: rgb(8,138,132);
+}
+
+.projectFactsWrap .item:nth-child(3){
+  background: rgb(11,144,136);
+}
+
+.projectFactsWrap .item:nth-child(4){
+  background: rgb(14,148,140);
+}
+
+.projectFactsWrap .item p.number{
+  font-size: 40px;
+  padding: 0;
+  font-weight: bold;
+}
+
+.projectFactsWrap .item p{
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+  margin: 0;
+  padding: 10px;
+  font-family: 'Open Sans';
+}
+
+
+.projectFactsWrap .item span{
+  width: 60px;
+  background: rgba(255, 255, 255, 0.8);
+  height: 2px;
+  display: block;
+  margin: 0 auto;
+}
+
+
+.projectFactsWrap .item i{
+  vertical-align: middle;
+  font-size: 50px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+
+.projectFactsWrap .item:hover i, .projectFactsWrap .item:hover p{
+  color: white;
+}
+
+.projectFactsWrap .item:hover span{
+  background: white;
+}
+
+@media (max-width: 786px){
+  .projectFactsWrap .item {
+     flex: 0 0 50%;
+  }
+}
+  </style>
+</head>
+
+<body id="body-pd">
+  <script src="js/main2.js"></script>
+
+  <header class="header" id="header">
+    <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+    <div class="header_img"> <img src="img/profile.png" alt="profilepic"> </div>
+  </header>
+  <div class="l-navbar" id="nav-bar">
+    <nav class="nav">
+      <div> <a href="#" class="nav_logo"> <img src="img/SIES_Spinner.png" width="32" height="32"> <span class="nav_logo-name">SIES GST</span> </a>
+        <div class="nav_list">
+          <a href="dashboard_admin" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a>
+          <a href="users" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Users</span> </a>
+          <a href="messages" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">Messages</span> </a>
+          <a href="announce" class="nav_link"> <i class='bx bxs-megaphone nav_icon'></i><span class="nav_name">Announcements</span> </a> 
+          <a href="statistics" class="nav_link active"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i><span class="nav_name">Stats</span> </a> </div>
+      </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
+    </nav>
+  </div>
+  <!--Container Main start-->
+  <div class="height-100">
+    <h1 style="font-size: 60px;">Placement Statistics</h1>
+    <hr>
+    <div id="projectFacts" class="sectionClass">
+      <div class="fullWidth eight columns">
+        <div class="projectFactsWrap ">
+          <div class="item wow fadeInUpBig animated animated" data-number="12" style="visibility: visible;">
+            <i class="fa fa-briefcase"></i>
+            <p id="number1" class="number">12</p>
+            <span></span>
+            <p>Company Visits</p>
+          </div>
+          <div class="item wow fadeInUpBig animated animated" data-number="55" style="visibility: visible;">
+            <i class="fa fa-address-card"></i>
+            <p id="number2" class="number">55</p>
+            <span></span>
+            <p>Placed Students</p>
+          </div>
+          <div class="item wow fadeInUpBig animated animated" data-number="6" style="visibility: visible;">
+            <i class="fa fa-credit-card"></i>
+            <p id="number3" class="number">6</p>
+            <span></span>
+            <p>Avg Stipend (LPA)</p>
+          </div>
+          <div class="item wow fadeInUpBig animated animated" data-number="246" style="visibility: visible;">
+            <i class="fa fa-clock"></i>
+            <p id="number4" class="number">5</p>
+            <span></span>
+            <p>Recent placemnts</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <h1>Students placed</h1>
+      <div class="row">
+        <div class="col">
+          <div id="donutchart" style="width: 400px; height: 400px;"></div>
+        </div>
+        <div class="col">
+          <div id="piechart" style="width: 400px; height: 400px;"></div>
+        </div>
+      </div>
+    </div>
+    <div style="margin: 2% 5%;">
+      <h2>Placement rounds data</h2>
+      <hr><br>
+      <section id="Placementdata">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Organization</th>
+                <th scope="col">Package</th>
+                <th scope="col">Round 1</th>
+                <th scope="col">Round 2</th>
+                <th scope="col">Round 3</th>
+                <th scope="col">Round 4</th>
+                <th scope="col">Placed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Continuum</td>
+                <td>6.5 LPA</td>
+                <td>50</td>
+                <td>40</td>
+                <td>30</td>
+                <td>20</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>Google</td>
+                <td>65 LPA</td>
+                <td>30</td>
+                <td>20</td>
+                <td>10</td>
+                <td>5</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>Microsoft</td>
+                <td>65 LPA</td>
+                <td>30</td>
+                <td>20</td>
+                <td>10</td>
+                <td>5</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>Amazon</td>
+                <td>65 LPA</td>
+                <td>30</td>
+                <td>20</td>
+                <td>10</td>
+                <td>5</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>IBM</td>
+                <td>65 LPA</td>
+                <td>30</td>
+                <td>20</td>
+                <td>10</td>
+                <td>5</td>
+                <td>2</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <br><br>
+    </div>
+  </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+  google.charts.load("current", { packages: ["corechart"] });
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['Status', 'Value'],
+      ['Placed', 300],
+      ['Not placed', 200],
+
+    ]);
+
+    var options = {
+      pieHole: 0.5,
+      pieSliceText: 'value',
+      legend: 'none',
+      title: 'For All Branches'
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+    chart.draw(data, options);
+  }
+</script>
+
+<script type="text/javascript">
+  google.charts.load('current', { 'packages': ['corechart'] });
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+
+    var data = google.visualization.arrayToDataTable([
+      ['Status', 'Value'],
+      ['Placed', 65],
+      ['Not Placed', 40],
+    ]);
+
+    var options = {
+      legend: 'none',
+      title: 'For CE Branch'
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+    chart.draw(data, options);
+  }
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script>
+  $.fn.jQuerySimpleCounter = function( options ) {
+	    var settings = $.extend({
+	        start:  0,
+	        end:    100,
+	        easing: 'swing',
+	        duration: 400,
+	        complete: ''
+	    }, options );
+
+	    var thisElement = $(this);
+
+	    $({count: settings.start}).animate({count: settings.end}, {
+			duration: settings.duration,
+			easing: settings.easing,
+			step: function() {
+				var mathCount = Math.ceil(this.count);
+				thisElement.text(mathCount);
+			},
+			complete: settings.complete
+		});
+	};
+
+
+$('#number1').jQuerySimpleCounter({end: 12,duration: 3000});
+$('#number2').jQuerySimpleCounter({end: 55,duration: 3000});
+$('#number3').jQuerySimpleCounter({end: 6,duration: 2000});
+$('#number4').jQuerySimpleCounter({end: 5,duration: 2500});
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</html>
