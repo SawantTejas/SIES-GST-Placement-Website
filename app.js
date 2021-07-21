@@ -4,24 +4,11 @@ const app = express();
 const port = 3000;
 const MongoClient = require("mongodb").MongoClient;
 const bodyParser = require("body-parser");
-var session = require("express-session");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //session
-app.use(
-  session({
-    key: "user_sid",
-    secret: "bettersecret",
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      expires: 600000,
-    },
-  })
-);
-
 app.use(express.json());
 var database;
 
