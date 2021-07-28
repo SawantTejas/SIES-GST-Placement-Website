@@ -19,6 +19,7 @@
     "express-fileupload": "^1.2.1",
     "mongodb": "^4.0.0",
     "mongoose": "^5.13.3",
+    "mongoose-encryption": "^2.1.0",
     "nodemon": "^2.0.12"
   },
   "devDependencies": {}

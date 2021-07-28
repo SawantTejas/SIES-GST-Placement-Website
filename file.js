@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
 const Student = require("./models/student");
+const encrypt = require("mongoose-encryption")
 //const fs = require("fs");
 
 const app = express();
@@ -36,6 +37,7 @@ app.post("/test", async function (req, res) {
   csvtojson().fromFile(csvfilepath).then((json) => {
       var i;
       for (i = 0; i < json.length; i++) {
+        console.log(json[i].fname)
         const newStudent = new Student({
             fname: json[i].fname,
             lname: json[i].nlame,

@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
-
+const Student = require("./models/student")
 const app = express();
 
 app.use(express.static("public"));
@@ -24,23 +24,14 @@ try {
   console.log("Failed to connect to mongoose!");
 }
 
-const userSchema = {
-  email: String,
-  password: String,
-  role: String,
-};
-
-const User = new mongoose.model("User", userSchema);
-
 app.get("/register", function(req, res){
  res.render("register")
 })
 
 app.post("/register", function(req, res){
-    const newUser = new User({
+    const newStudent = new Student({
         email: req.body.username,
         password: req.body.password,
-        role: req.body.role
     })
     newUser.save(function(err){
         if(err){
@@ -59,18 +50,18 @@ app.post("/login", function (req, res) {
   const username = req.body.uname;
   const password = req.body.psw;
   
-  User.findOne({ email: username }, function (err, foundUser) {
+  Student.findOne({ email: username }, function (err, foundUser) {
     if (err) {
       console.log(err);
     } else {
       if (foundUser) {
         if (foundUser.password === password) {
           res.render("studentdashboard", {
-            fname: `${foundUser.email}`,
-            lname: `${foundUser.email}`,
-            prn: `${foundUser.email}`,
-            department: `${foundUser.email}`,
-            year: `${foundUser.email}`,
+            fname: `${foundUser.fname}`,
+            lname: `${foundUser.lname}`,
+            prn: `${foundUser.prn}`,
+            department: `${foundUser.department}`,
+            year: `${foundUser.year}`,
             pstatus: `${foundUser.email}`,
             cgpi: `${foundUser.email}`,
             skills: `${foundUser.email}`,
