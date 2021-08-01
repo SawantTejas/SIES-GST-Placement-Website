@@ -1,5 +1,7 @@
+require('dotenv').config();
 const mongoose = require("mongoose");
 const encrypt = require("mongoose-encryption")
+const secret = process.env.SECRET
 const studentSchema = new mongoose.Schema({
   fname: String,
   lname: String,
@@ -20,7 +22,7 @@ const studentSchema = new mongoose.Schema({
 
 });
 
-const secret = "Topsecretstring.";
+
 studentSchema.plugin(encrypt, {
   secret: secret,
   encryptedFields: ["password"],
