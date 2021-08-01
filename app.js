@@ -17,7 +17,7 @@ app.use(
 
 try {
   mongoose.connect(
-    "mongodb+srv://tejas190899:oVs2WRkD9wBgr55d@placement.bjqlg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    process.env.URL,
     { useNewUrlParser: true, useUnifiedTopology: true },
     () => console.log("Mongoose connected")
   );
