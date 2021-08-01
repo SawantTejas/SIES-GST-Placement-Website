@@ -9,6 +9,15 @@ const studentSchema = new mongoose.Schema({
   department: String,
   year: String,
   batch: Number,
+  cgpi: String,
+  kt: [{sem: String, subject: String}],
+  sgpi:[String],
+  placement_Status: String,
+  placement_hist: [{Company: String, Package: String, Role: String}],
+  achieve: [{atitle: String, certi: String}],
+  skills: [{name: String, type: String}]
+  
+
 });
 
 const secret = "Topsecretstring.";

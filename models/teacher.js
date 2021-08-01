@@ -1,13 +1,18 @@
-const mongoose = require('mongoose')
+const encrypt = require("mongoose-encryption");
+const teacherSchema = new mongoose.Schema({
+  fname: String,
+  lname: String,
+  department: String,
+  email: String,
+  password: String,
+  roles: [String],
+});
 
-const teacherSchema = {
-    fname: String,
-    lname: String,
-    department: String,
-    email: String,
-    password: String,
-  };
-  
-  const Teacher = new mongoose.model("Teacher", teacherSchema);
+const secret = "Topsecretstring.";
+teacherSchema.plugin(encrypt, {
+  secret: secret,
+  encryptedFields: ["password"],
+});
+const Teacher = new mongoose.model("Teacher", teacherSchema);
 
-  module.exports =  Teacher
+module.exports = Teacher;
