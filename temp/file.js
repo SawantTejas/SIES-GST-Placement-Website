@@ -3,7 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
-const Student = require("./models/student");
+const Student = require("./models/student1");
 const encrypt = require("mongoose-encryption")
 //const fs = require("fs");
 
@@ -38,15 +38,17 @@ app.post("/test", async function (req, res) {
       var i;
       for (i = 0; i < json.length; i++) {
         console.log(json[i].fname)
+        
         const newStudent = new Student({
             fname: json[i].fname,
             lname: json[i].nlame,
             prn: json[i].prn,
-            email: json[i].email,
+            username: json[i].email,
             password: json[i].password,
             department: json[i].department,
             year: json[i].year,
-            batch: json[i].batch
+            batch: json[i].batch,
+            placement_Status: json[i].placement_Status
         })
         newStudent.save(function(err){
             if(err){

@@ -1,6 +1,7 @@
 require('dotenv').config();
-const encrypt = require("mongoose-encryption");
-const secret = process.env.SECRET
+const session = require("express-session");
+const passport = require("passport");
+const passportLocalMongoose = require("passport-local-mongoose");
 const teacherSchema = new mongoose.Schema({
   fname: String,
   lname: String,
@@ -10,10 +11,9 @@ const teacherSchema = new mongoose.Schema({
   roles: [String],
 });
 
-teacherSchema.plugin(encrypt, {
-  secret: secret,
-  encryptedFields: ["password"],
-});
+teacherSchema.plugin(passportLocalMongoose);
 const Teacher = new mongoose.model("Teacher", teacherSchema);
-
+passport.use(Teacher.createStrategy());
+passport.serializeUser(Teacher.serializeUser());
+passport.deserializeUser(Teacher.deserializeUser());
 module.exports = Teacher;

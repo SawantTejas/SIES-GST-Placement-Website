@@ -1,14 +1,13 @@
+  
 require('dotenv').config();
 const mongoose = require("mongoose");
-const session = require("express-session");
-const passport = require("passport");
-const passportLocalMongoose = require("passport-local-mongoose");
-
+const encrypt = require("mongoose-encryption")
+const secret = process.env.SECRET
 const studentSchema = new mongoose.Schema({
   fname: String,
   lname: String,
   prn: String,
-  username: String,
+  email: String,
   password: String,
   department: String,
   year: String,
@@ -20,9 +19,16 @@ const studentSchema = new mongoose.Schema({
   placement_hist: [{Company: String, Package: String, Role: String}],
   achieve: [{atitle: String, certi: String}],
   skills: [{name: String, type: String}]
+  
 
 });
 
 
-studentSchema.plugin(passportLocalMongoose);
-module.exports = mongoose.model('Student', studentSchema);
+studentSchema.plugin(encrypt, {
+  secret: secret,
+  encryptedFields: ["password"],
+});
+
+const Student = new mongoose.model("Student", studentSchema);
+
+module.exports = Student;
