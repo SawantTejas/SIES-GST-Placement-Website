@@ -3,7 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
-const Student = require("./models/student1");
+const Student = require("../models/student1");
 const encrypt = require("mongoose-encryption")
 //const fs = require("fs");
 
@@ -34,7 +34,7 @@ app.get("/test", function (req, res) {
 
 app.post("/test", async function (req, res) {
   const csvfilepath = await req.body.file;
-  csvtojson().fromFile(csvfilepath).then((json) => {
+   await csvtojson().fromFile(csvfilepath).then((json) => {
       var i;
       for (i = 0; i < json.length; i++) {
         console.log(json[i].fname)
@@ -53,8 +53,6 @@ app.post("/test", async function (req, res) {
         newStudent.save(function(err){
             if(err){
                 console.log(err);
-            }else{
-                res.render("test")
             }
         })
       }

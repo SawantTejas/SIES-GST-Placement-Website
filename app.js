@@ -1,6 +1,10 @@
 //jshint esversion:6
 require('dotenv').config();
+
+const fs = require("fs")
 const express = require("express");
+const csvtojson = require("csvtojson");
+var csv = require("fast-csv");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
@@ -25,9 +29,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect(process.env.URL, {useNewUrlParser: true},{ useUnifiedTopology: true });
+mongoose.connect(process.env.URL, {useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set("useCreateIndex", true);
 
+
+//student schema begins
 const studentSchema = new mongoose.Schema({
     fname: String,
     lname: String,
@@ -38,6 +44,7 @@ const studentSchema = new mongoose.Schema({
     year: String,
     batch: Number,
     cgpi: String,
+    role: String,
     kt: [{sem: String, subject: String}],
     sgpi:[String],
     placement_Status: String,
@@ -48,20 +55,40 @@ const studentSchema = new mongoose.Schema({
   });
 
 studentSchema.plugin(passportLocalMongoose);
-
 const Student = new mongoose.model("Student", studentSchema);
-
 passport.use(Student.createStrategy());
-
 passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
-
 passport.deserializeUser(function(id, done) {
   Student.findById(id, function(err, user) {
     done(err, user);
   });
 });
+//student schema ends
+
+
+//teacher schema begins
+const teacherSchema = new mongoose.Schema({
+  fname: String,
+  lname: String,
+  department: String,
+  email: String,
+  password: String,
+  roles: [String],
+});
+teacherSchema.plugin(passportLocalMongoose);
+const Teacher = new mongoose.model("Teacher", teacherSchema);
+passport.use(Teacher.createStrategy());
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+passport.deserializeUser(function(id, done) {
+  Teacher.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+//teacher schema ends
 
 
 app.get("/", function(req, res){
@@ -125,9 +152,33 @@ app.post("/login", function(req, res){
 });
 
 
-
-
-
+app.post("/test", async function (req, res) { 
+const csvfilepath = await req.body.file;
+   await csvtojson().fromFile(csvfilepath).then((json) => {
+      var i;
+      for (i = 0; i < json.length; i++) {
+        console.log(json[i].fname)
+        
+        var newStudent = {
+            fname: json[i].fname,
+            lname: json[i].nlame,
+            prn: json[i].prn,
+            username: json[i].email,
+            department: json[i].department,
+            year: json[i].year,
+            batch: json[i].batch,
+            placement_Status: json[i].placement_Status,
+            role: "Student"
+        }
+        Student.register(newStudent, json[i].password, function(err, user){
+          if (err) {
+            console.log(err);
+          } 
+        });
+      }
+    });
+    res.redirect("/test");
+});
 
 
 app.listen(3000, function() {

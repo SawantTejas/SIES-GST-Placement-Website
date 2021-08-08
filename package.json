@@ -19,6 +19,7 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "express-session": "^1.17.2",
+    "fast-csv": "^4.3.6",
     "mongodb": "^4.0.0",
     "mongoose": "^5.13.3",
     "mongoose-encryption": "^2.1.0",
