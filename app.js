@@ -73,7 +73,7 @@ const teacherSchema = new mongoose.Schema({
   fname: String,
   lname: String,
   department: String,
-  email: String,
+  username: String,
   password: String,
   role: String,
 });
@@ -137,28 +137,29 @@ app.post("/register", function(req, res){
 });
 
 app.post("/login", function(req, res){
-const username = req.body.username;
-var isStudent = False;
-var isTeacher = False;
+var isStudent = "False";
+var isTeacher = "False";
 //student finding
-Student.findOne({ username: username }, function (err, student) {
+Student.findOne({ username: req.body.username }, function (err, student) {
   if(err){
     console.log(err);
   }
   else if(student){
-    isStudent = True;
+    isStudent = "True";
+    console.log("is a student");
   }
   else{
     console.log("User not found");
   }
 });
 //teacher finding
-Teacher.findOne({ username: username }, function (err, teacher) {
+Teacher.findOne({ username: req.body.username }, function (err, teacher) {
   if(err){
     console.log(err);
   }
   else if(teacher){
-    isTeacher = True;
+    isTeacher = "True";
+    console.log("is a teacher");
   }
   else{
     console.log("User not found");
@@ -166,7 +167,7 @@ Teacher.findOne({ username: username }, function (err, teacher) {
 });
 
 //for student
-if(isStudent == True){
+if(isStudent == "True"){
 
   const student = new Student({
     username: req.body.username,
@@ -186,7 +187,7 @@ if(isStudent == True){
 
 
 //for teacher
-if(isTeacher == True){
+if(isTeacher == "True"){
 
   const teacher = new Teacher({
     username: req.body.username,
@@ -207,9 +208,9 @@ if(isTeacher == True){
 });   //login post ends
 
 //csv for student
-app.post("/test", async function (req, res) { 
-const csvfilepath = await req.body.file;
-   await csvtojson().fromFile(csvfilepath).then((json) => {
+app.post("/test",  function (req, res) { 
+const csvfilepath =  req.body.file;
+    csvtojson().fromFile(csvfilepath).then((json) => {
       var i;
       for (i = 0; i < json.length; i++) {
         console.log(json[i].fname)
@@ -238,9 +239,9 @@ const csvfilepath = await req.body.file;
 
 
 //csv for teacher
-app.post("/addteacher", async function (req, res) { 
-  const csvfilepath1 = await req.body.file;
-     await csvtojson().fromFile(csvfilepath1).then((json) => {
+app.post("/addteacher", function (req, res) { 
+  const csvfilepath1 = req.body.file;
+      csvtojson().fromFile(csvfilepath1).then((json) => {
         var i;
         for (i = 0; i < json.length; i++) {
           console.log(json[i].fname)

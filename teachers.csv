@@ -1,7 +1,6 @@
-fname,lname,prn,email,password,department
+fname,lname,email,password,department
 Varsha,Patil,varsha.patil@siesgst.ac.in,password,CE
 Stuti,Ahuja,stuti.ahuja@siesgst.ac.in,password,IT
 Ajay,H,ajay.h@siesgst.ac.in,password,MECH
 Hema,Raut,hema.raut@siesgst.ac.in,password,EXTC
 Sandesh,Ramteke,sandesh.ramteke@siesgst.ac.in,password,PPT
-
