@@ -75,7 +75,7 @@ const teacherSchema = new mongoose.Schema({
   department: String,
   email: String,
   password: String,
-  roles: [String],
+  role: String,
 });
 teacherSchema.plugin(passportLocalMongoose);
 const Teacher = new mongoose.model("Teacher", teacherSchema);
@@ -112,6 +112,10 @@ app.get("/test", function (req, res) {
     res.render("test");
   });
 
+app.get("/addteacher", function (req, res) {
+    res.render("addteacher");
+  });
+
 app.get("/logout", function(req, res){
   req.logout();
   res.redirect("/");
@@ -133,6 +137,36 @@ app.post("/register", function(req, res){
 });
 
 app.post("/login", function(req, res){
+const username = req.body.username;
+var isStudent = False;
+var isTeacher = False;
+//student finding
+Student.findOne({ username: username }, function (err, student) {
+  if(err){
+    console.log(err);
+  }
+  else if(student){
+    isStudent = True;
+  }
+  else{
+    console.log("User not found");
+  }
+});
+//teacher finding
+Teacher.findOne({ username: username }, function (err, teacher) {
+  if(err){
+    console.log(err);
+  }
+  else if(teacher){
+    isTeacher = True;
+  }
+  else{
+    console.log("User not found");
+  }
+});
+
+//for student
+if(isStudent == True){
 
   const student = new Student({
     username: req.body.username,
@@ -148,10 +182,31 @@ app.post("/login", function(req, res){
       });
     }
   });
+}
 
-});
 
+//for teacher
+if(isTeacher == True){
 
+  const teacher = new Teacher({
+    username: req.body.username,
+    password: req.body.password
+  });
+
+  req.login(teacher, function(err){
+    if (err) {
+      console.log(err);
+    } else {
+      passport.authenticate("local")(req, res, function(){
+        res.redirect("/test");
+      });
+    }
+  });
+}
+
+});   //login post ends
+
+//csv for student
 app.post("/test", async function (req, res) { 
 const csvfilepath = await req.body.file;
    await csvtojson().fromFile(csvfilepath).then((json) => {
@@ -161,7 +216,7 @@ const csvfilepath = await req.body.file;
         
         var newStudent = {
             fname: json[i].fname,
-            lname: json[i].nlame,
+            lname: json[i].lname,
             prn: json[i].prn,
             username: json[i].email,
             department: json[i].department,
@@ -179,6 +234,35 @@ const csvfilepath = await req.body.file;
     });
     res.redirect("/test");
 });
+
+
+
+//csv for teacher
+app.post("/addteacher", async function (req, res) { 
+  const csvfilepath1 = await req.body.file;
+     await csvtojson().fromFile(csvfilepath1).then((json) => {
+        var i;
+        for (i = 0; i < json.length; i++) {
+          console.log(json[i].fname)
+          
+          var newTeacher = {
+              fname: json[i].fname,
+              lname: json[i].lname,
+              username: json[i].email,
+              department: json[i].department,
+              role: "Teacher"
+          }
+          Teacher.register(newTeacher, json[i].password, function(err, user){
+            if (err) {
+              console.log(err);
+            } 
+          });
+        }
+      });
+      res.redirect("/addteacher");
+  });
+  
+
 
 
 app.listen(3000, function() {
