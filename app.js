@@ -1,6 +1,5 @@
 //jshint esversion:6
 require('dotenv').config();
-
 const fs = require("fs")
 const express = require("express");
 const csvtojson = require("csvtojson");
@@ -11,7 +10,7 @@ const mongoose = require("mongoose");
 const session = require('express-session');
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
-
+var user1;
 const app = express();
 
 app.use(express.static("public"));
@@ -39,7 +38,6 @@ const studentSchema = new mongoose.Schema({
     lname: String,
     prn: String,
     username: String,
-    password: String,
     department: String,
     year: String,
     batch: Number,
@@ -53,18 +51,7 @@ const studentSchema = new mongoose.Schema({
     skills: [{name: String, type: String}]
   
   });
-
-studentSchema.plugin(passportLocalMongoose);
 const Student = new mongoose.model("Student", studentSchema);
-passport.use(Student.createStrategy());
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
-passport.deserializeUser(function(id, done) {
-  Student.findById(id, function(err, user) {
-    done(err, user);
-  });
-});
 //student schema ends
 
 
@@ -74,12 +61,30 @@ const teacherSchema = new mongoose.Schema({
   lname: String,
   department: String,
   username: String,
+  role: String,
+});
+
+const Teacher = new mongoose.model("Teacher", teacherSchema);
+
+const adminSchema = new mongoose.Schema({
+  fname: String,
+  lname: String,
+  username: String,
+  role: String,
+});
+
+const Admin = new mongoose.model("Admin", adminSchema);
+
+
+//teacher schema ends
+const userSchema = new mongoose.Schema({
+  username: String,
   password: String,
   role: String,
 });
-teacherSchema.plugin(passportLocalMongoose);
-const Teacher = new mongoose.model("Teacher", teacherSchema);
-passport.use(Teacher.createStrategy());
+userSchema.plugin(passportLocalMongoose);
+const User = new mongoose.model("User", userSchema);
+passport.use(User.createStrategy());
 passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
@@ -88,24 +93,25 @@ passport.deserializeUser(function(id, done) {
     done(err, user);
   });
 });
-//teacher schema ends
-
-
+//*******************************************************************render functions
+//homepage
 app.get("/", function(req, res){
   res.render("index");
 });
+app.get("/index", function(req, res){
+  res.render("index");
+});
 
-
+//misc,forms
+app.get("/error", function(req,res){
+  res.render("error");
+})
 app.get("/login", function(req, res){
   res.render("login");
 });
 
 app.get("/register", function(req, res){
   res.render("register");
-});
-
-app.get("/dashboard", function(req, res){
-  res.render("test")
 });
 
 app.get("/test", function (req, res) {
@@ -121,9 +127,301 @@ app.get("/logout", function(req, res){
   res.redirect("/");
 });
 
-app.post("/register", function(req, res){
+//student
 
-  Student.register({username: req.body.username}, req.body.password, function(err, user){
+app.get("/dashboard", function(req, res){
+  if(!user1){
+    res.redirect("/error");
+  }
+  if(user1.role == "Student"){
+    Student.findOne({ username: user1.username }, function (err, student) {
+      if(err){
+        console.log(err);
+        res.redirect("/error");
+      }
+      else{
+  res.render("studentdashboard",{
+        fname: student.fname,
+        lname: student.lname,
+        prn: student.prn,
+        department: student.department,
+        year: student.year,
+        pstatus: student.placement_Status,
+        cgpi: student.cgpi,
+        skills: student.skills,
+        achievements: student.achieve,
+        phone: "NA",
+        email: student.username,
+  });
+}
+    });
+}else{
+  res.redirect("/error");
+} 
+});
+
+app.get("/academics", function(req, res){
+  if(!user1){
+    res.redirect("/error");
+  }
+  if(user1.role == "Student"){
+    Student.findOne({ username: user1.username }, function (err, student) {
+      if(err){
+        console.log(err);
+        res.redirect("/error");
+      }
+      else{
+  res.render("studentacad");
+}
+});
+} else{
+  res.redirect("/error");
+} 
+});
+
+app.get("/achievements", function(req, res){
+  if(!user1){
+    res.redirect("/error");
+  }
+  if(user1.role == "Student"){
+    Student.findOne({ username: user1.username }, function (err, student) {
+      if(err){
+        console.log(err);
+        res.redirect("/error");
+      }
+      else{
+  res.render("studentachmnt");
+}
+});
+} else{
+  res.redirect("/error");
+} 
+});
+
+app.get("/announcements", function(req, res){
+  if(!user1){
+    res.redirect("/error");
+  }
+  if(user1.role == "Student"){
+    Student.findOne({ username: user1.username }, function (err, student) {
+      if(err){
+        console.log(err);
+        res.redirect("/error");
+      }
+      else{
+  res.render("studentanno");
+}
+});
+} else{
+  res.redirect("/error");
+} 
+});
+
+app.get("/placement", function(req, res){
+  if(!user1){
+    res.redirect("/error");
+  }
+  if(user1.role == "Student"){
+    Student.findOne({ username: user1.username }, function (err, student) {
+      if(err){
+        console.log(err);
+        res.redirect("/error");
+      }
+      else{
+  res.render("studentplace");
+}
+});
+} else{
+  res.redirect("/error");
+} 
+});
+
+//teacher
+app.get("/tdashboard", function(req, res){
+  if(!user1){
+    res.redirect("/error");
+  }
+  if(user1.role == "Teacher"){
+    Teacher.findOne({ username: user1.username }, function (err, teacher) {
+      if(err){
+        console.log(err);
+        res.redirect("/error");
+      }
+      else{
+  res.render("teacherdashboard");
+}
+});
+} else{
+  res.redirect("/error");
+} 
+});
+app.get("/tplacement", function(req, res){
+  if(!user1){
+    res.redirect("/error");
+  }
+  if(user1.role == "Teacher"){
+    Teacher.findOne({ username: user1.username }, function (err, teacher) {
+      if(err){
+        console.log(err);
+        res.redirect("/error");
+      }
+      else{
+  res.render("teacherplacement");
+}
+});
+}else{
+  res.redirect("/error");
+} 
+});
+app.get("/tstudents", function(req, res){
+  if(!user1){
+    res.redirect("/error");
+  }
+  if(user1.role == "Teacher"){
+    Teacher.findOne({ username: user1.username }, function (err, teacher) {
+      if(err){
+        console.log(err);
+        res.redirect("/error");
+      }
+      else{
+  res.render("teacherstud");
+}
+});
+}else{
+  res.redirect("/error");
+}  
+});
+app.get("/tannouncements", function(req, res){
+  if(!user1){
+    res.redirect("/error");
+  }
+  if(user1.role == "Teacher"){
+    Teacher.findOne({ username: user1.username }, function (err, teacher) {
+      if(err){
+        console.log(err);
+        res.redirect("/error");
+      }
+      else{
+  res.render("teacheranno");
+}
+});
+}else{
+  res.redirect("/error");
+} 
+});
+
+//admin
+app.get("/dashboard_admin", function(req, res){
+  if(!user1){
+    res.redirect("/error");
+  }
+  if(user1.role == "Admin"){
+    Teacher.findOne({ username: user1.username }, function (err, admin) {
+      if(err){
+        console.log(err);
+        res.redirect("/error");
+      }
+      else{
+  res.render("admindashboard");
+}
+});
+}else{
+  res.redirect("/error");
+} 
+});
+
+
+app.get("/statistics", function(req, res){
+  if(!user1){
+    res.redirect("/error");
+  }
+  if(user1.role == "Admin"){
+    Teacher.findOne({ username: user1.username }, function (err, admin) {
+      if(err){
+        console.log(err);
+        res.redirect("/error");
+      }
+      else{
+  res.render("admindashstats");
+}
+});
+}else{
+  res.redirect("/error");
+} 
+});
+
+app.get("/messages", function(req, res){
+  if(!user1){
+    res.redirect("/error");
+  }
+  if(user1.role == "Admin"){
+    Teacher.findOne({ username: user1.username }, function (err, admin) {
+      if(err){
+        console.log(err);
+        res.redirect("/error");
+      }
+      else{
+  res.render("adminmessages");
+}
+});
+}else{
+  res.redirect("/error");
+} 
+});
+
+app.get("/announce", function(req, res){
+  if(!user1){
+    res.redirect("/error");
+  }
+  if(user1.role == "Admin"){
+    Teacher.findOne({ username: user1.username }, function (err, admin) {
+      if(err){
+        console.log(err);
+        res.redirect("/error");
+      }
+      else{
+  res.render("adminannounce");
+}
+});
+}else{
+  res.redirect("/error");
+} 
+});
+
+
+app.get("/users", function(req, res){
+  if(!user1){
+    res.redirect("/error");
+  }
+  if(user1.role == "Admin"){
+    Teacher.findOne({ username: user1.username }, function (err, admin) {
+      if(err){
+        console.log(err);
+        res.redirect("/error");
+      }
+      else{
+  res.render("users");
+}
+});
+}else{
+  res.redirect("/error");
+} 
+});
+
+//************************************************************post requests
+app.post("/register", function(req, res){
+  var newAdmin = new Admin({
+    fname: req.body.fname,
+    lname: req.body.lname,
+    username: req.body.username,
+    role: "Admin"
+});
+newAdmin.save(function(err){
+  if(err){
+      console.log(err);
+  }
+})
+  User.register({username: req.body.username, role: "Admin"}, req.body.password, function(err, user){
     if (err) {
       console.log(err);
       res.redirect("/register");
@@ -137,75 +435,35 @@ app.post("/register", function(req, res){
 });
 
 app.post("/login", function(req, res){
-var isStudent = "False";
-var isTeacher = "False";
-//student finding
-Student.findOne({ username: req.body.username }, function (err, student) {
-  if(err){
-    console.log(err);
-  }
-  else if(student){
-    isStudent = "True";
-    console.log("is a student");
-  }
-  else{
-    console.log("User not found");
-  }
-});
-//teacher finding
-Teacher.findOne({ username: req.body.username }, function (err, teacher) {
-  if(err){
-    console.log(err);
-  }
-  else if(teacher){
-    isTeacher = "True";
-    console.log("is a teacher");
-  }
-  else{
-    console.log("User not found");
-  }
-});
-
-//for student
-if(isStudent == "True"){
-
-  const student = new Student({
+  const user = new User({
     username: req.body.username,
     password: req.body.password
-  });
-
-  req.login(student, function(err){
+  })
+  req.login(user, function(err){
     if (err) {
       console.log(err);
     } else {
       passport.authenticate("local")(req, res, function(){
-        res.redirect("/test");
+        user1 = req.user;
+        if(user1.role == "Student"){
+          res.redirect("/dashboard");
+        }
+        else if(user1.role == "Teacher"){
+          res.redirect("/tdashboard");
+        }
+        else if(user1.role == "Admin"){
+          res.redirect("/dashboard_admin");
+        }
+        else{
+          res.redirect("/error");
+        }
       });
     }
   });
-}
+
+});   
 
 
-//for teacher
-if(isTeacher == "True"){
-
-  const teacher = new Teacher({
-    username: req.body.username,
-    password: req.body.password
-  });
-
-  req.login(teacher, function(err){
-    if (err) {
-      console.log(err);
-    } else {
-      passport.authenticate("local")(req, res, function(){
-        res.redirect("/test");
-      });
-    }
-  });
-}
-
-});   //login post ends
 
 //csv for student
 app.post("/test",  function (req, res) { 
@@ -213,24 +471,35 @@ const csvfilepath =  req.body.file;
     csvtojson().fromFile(csvfilepath).then((json) => {
       var i;
       for (i = 0; i < json.length; i++) {
-        console.log(json[i].fname)
+        console.log(json[i].password)
         
-        var newStudent = {
-            fname: json[i].fname,
-            lname: json[i].lname,
-            prn: json[i].prn,
+        var newUser = {
             username: json[i].email,
-            department: json[i].department,
-            year: json[i].year,
-            batch: json[i].batch,
-            placement_Status: json[i].placement_Status,
             role: "Student"
         }
-        Student.register(newStudent, json[i].password, function(err, user){
+        User.register(newUser, json[i].password, function(err, user){
           if (err) {
             console.log(err);
           } 
         });
+
+        const newStudent = new Student({
+          fname: json[i].fname,
+          lname: json[i].lname,
+          prn: json[i].prn,
+          username: json[i].email,
+          department: json[i].department,
+          year: json[i].year,
+          batch: json[i].batch,
+          placement_Status: json[i].placement_Status,
+          role: "Student"
+      })
+      newStudent.save(function(err){
+          if(err){
+              console.log(err);
+          }
+      })
+
       }
     });
     res.redirect("/test");
@@ -245,19 +514,27 @@ app.post("/addteacher", function (req, res) {
         var i;
         for (i = 0; i < json.length; i++) {
           console.log(json[i].fname)
-          
-          var newTeacher = {
+          var newUser = {
+            username: json[i].email,
+            role: "Teacher"
+        }
+        User.register(newUser, json[i].password, function(err, user){
+          if (err) {
+            console.log(err);
+          } 
+        });
+          var newTeacher = new Teacher({
               fname: json[i].fname,
               lname: json[i].lname,
               username: json[i].email,
               department: json[i].department,
               role: "Teacher"
-          }
-          Teacher.register(newTeacher, json[i].password, function(err, user){
-            if (err) {
-              console.log(err);
-            } 
           });
+          newTeacher.save(function(err){
+            if(err){
+                console.log(err);
+            }
+        })
         }
       });
       res.redirect("/addteacher");

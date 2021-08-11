@@ -32,6 +32,14 @@
           <!-- Makes POST request to /register route -->
           <form action="/register" method="POST">
             <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" class="form-control" name="fname">
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" class="form-control" name="lname">
+            </div>
+            <div class="form-group">
               <label for="email">Email</label>
               <input type="email" class="form-control" name="username">
             </div>
@@ -39,7 +47,6 @@
               <label for="password">Password</label>
               <input type="password" class="form-control" name="password">
             </div>
-            <input type = "text" name = "role" placeholder="Student">
             <button type="submit" class="btn btn-dark">Register</button>
           </form>
 
