@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<form>
+		<label for="title"><strong>Title</strong></label><br>
+		<input type="text" name="title" placeholder="title" class="title" />
+		<label for="wdym"><strong>When did you make</strong></label><br>
+		<input type="text" name="wdym" placeholder="when did you make" class="wdym" />
+		<label for="description"><strong>Description</strong></label><br>
+		<textarea rows="4" cols="50" name="description" placeholder="description" class="description"></textarea>
+		<label for="avatar"><strong>Your achievement</strong></label>
+		<div class="file">
+			<input type="file" accept="image/*,.pdf" style="padding: 5PX;">
+		</div>
+		<input name="submit" class="btn" type="submit" value="Update"/>
+	</form>
+</body>
+
+</html>
