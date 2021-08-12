@@ -236,6 +236,63 @@ app.get("/placement", function(req, res){
 } 
 });
 
+app.get("/formstudent", function(req, res){
+  if(!user1){
+    res.redirect("/error");
+  }
+  if(user1.role == "Student"){
+    Student.findOne({ username: user1.username }, function (err, student) {
+      if(err){
+        console.log(err);
+        res.redirect("/error");
+      }
+      else{
+  res.render("form2");
+}
+});
+} else{
+  res.redirect("/error");
+} 
+});
+
+app.get("/formproject", function(req, res){
+  if(!user1){
+    res.redirect("/error");
+  }
+  if(user1.role == "Student"){
+    Student.findOne({ username: user1.username }, function (err, student) {
+      if(err){
+        console.log(err);
+        res.redirect("/error");
+      }
+      else{
+  res.render("form1");
+}
+});
+} else{
+  res.redirect("/error");
+} 
+});
+
+app.get("/formskill", function(req, res){
+  if(!user1){
+    res.redirect("/error");
+  }
+  if(user1.role == "Student"){
+    Student.findOne({ username: user1.username }, function (err, student) {
+      if(err){
+        console.log(err);
+        res.redirect("/error");
+      }
+      else{
+  res.render("form3");
+}
+});
+} else{
+  res.redirect("/error");
+} 
+});
+
 //teacher
 app.get("/tdashboard", function(req, res){
   if(!user1){
