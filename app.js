@@ -10,6 +10,7 @@ const mongoose = require("mongoose");
 const session = require('express-session');
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
+const Placement = require('./models/placement')
 var user1;
 const app = express();
 
@@ -121,7 +122,9 @@ app.get("/test", function (req, res) {
 app.get("/addteacher", function (req, res) {
     res.render("addteacher");
   });
-
+app.get("/addplacement", function(req,res){
+  res.render("addplacement");
+});
 app.get("/logout", function(req, res){
   req.logout();
   res.redirect("/");
@@ -598,7 +601,36 @@ app.post("/addteacher", function (req, res) {
   });
   
 
+//csv for placement
 
+app.post("/addplacement",function(req,res){
+  const csvfilepath2 = req.body.file;
+    csvtojson().fromFile(csvfilepath2).then((json) => {
+      var i;
+      for (i = 0; i < json.length; i++) {
+        var prn = json[i].prn
+        const newPlacement = new Placement({
+            company: json[i].company,
+            stipend: json[i].stipend,
+            role: json[i].role,
+            campus: "On-Campus",
+            prn: json[i].prn,
+        })
+        newPlacement.save(function(err){
+          if(err){
+            console.log(err);
+        }else{
+          Student.update({prn: prn},{$set: { "placement_Status": "Placed"}}, function(err, user) {
+            if (err) throw error
+            console.log(user);
+            console.log("update user complete");
+            res.redirect("/addplacement");
+        });
+        }
+    })
+  }
+});
+});
 
 app.listen(3000, function() {
   console.log("Server started on port 3000.");

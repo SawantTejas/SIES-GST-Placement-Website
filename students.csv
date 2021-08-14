@@ -1,16 +1,4 @@
 fname,lname,prn,email,password,department,year,batch,placement_Status
-Tejas,Sawant,118A1075,tejas.sawant18@siesgst.ac.in,password,CE,BE,2022,Not Placed
-Pritamsunder,Idayakumar,118A1064,pritam.sunder18@siesgst.ac.in,password,CE,BE,2022,Not Placed
-Amit,Sabkale,118A1070,sabkale.amit18@siesgst.ac.in,password,IT,BE,2022,Not Placed
-Ratish,Shinde,118A1080,shinde.ratish18@siesgst.ac.in,password,IT,BE,2022,Not Placed
-Abiram,Sudhakar,118A1002,sudhakar.abiram18@siesgst.ac.in,password,IT,BE,2022,Placed
-Anirudh,Belwadi,118A1011,belwadi.anirudh18@siesgst.ac.in,password,CE,BE,2022,Placed
-Aditya,Borude,118A1014,aditya.borude18@siesgst.ac.in,password,MECH,BE,2022,Placed
-Ashish,Shinde,118A1054,ashish.shinde18@siesgst.ac.in,password,MECH,BE,2022,Not Placed
-Vijay,Shankar,118A1074,vijay.shankar18@siesgst.ac.in,password,MECH,BE,2022,Not Placed
-Karthik,Borude,118A1034,karthik.borude18@siesgst.ac.in,password,EXTC,BE,2022,Placed
-Surya,Borude,118A1024,surya.borude18@siesgst.ac.in,password,EXTC,BE,2022,Not Placed
-Vinayak,Borude,118A1044,vinayak.borude18@siesgst.ac.in,password,EXTC,BE,2022,Not Placed
-Sanchita,Patil,118A1084,sanchita.patil18@siesgst.ac.in,password,PPT,BE,2022,Placed
-Samruddhi,Mote,118A1094,samruddhi.mote18@siesgst.ac.in,password,PPT,BE,2022,Not Placed
-Ashish,Sonawne,118A1104,ashish.sonawne18@siesgst.ac.in,password,PPT,BE,2022,Not Placed
+Tejas,Sabkale,118A5075,tejas.sabkale18@siesgst.ac.in,password,MECH,BE,2022,Not Placed
+Pritamsunder,Sawant,118A5064,pritam.sawant18@siesgst.ac.in,password,PPT,BE,2022,Not Placed
+Amit,Idayakumar,118A5070,idayakumar.amit18@siesgst.ac.in,password,EXTC,BE,2022,Not Placed

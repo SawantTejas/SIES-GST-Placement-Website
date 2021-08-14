@@ -123,7 +123,9 @@ a {
   color: #fff;
 }
   
-
+.search-buttons a:hover{
+  color: white;
+}
 @media only screen and (max-width: 926px) {
   .articles {
     grid-template-columns: repeat(2, 1fr);
@@ -183,9 +185,9 @@ a {
         <div> <a href="index" class="nav_logo"> <img src="img/SIES_Spinner.png" width="32" height="32"> <span class="nav_logo-name">SIES GST</span> </a>
           <div class="nav_list">
             <a href="dashboard_admin" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a>
-            <a href="users" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Users</span> </a>
+            <a href="users" class="nav_link active"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Users</span> </a>
             <a href="messages" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">Messages</span> </a>
-            <a href="announce" class="nav_link active"> <i class='bx bxs-megaphone nav_icon'></i><span class="nav_name">Announcements</span> </a> 
+            <a href="announce" class="nav_link"> <i class='bx bxs-megaphone nav_icon'></i><span class="nav_name">Announcements</span> </a> 
             <a href="statistics" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i><span class="nav_name">Stats</span> </a> </div>
         </div> <a href="logout" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
       </nav>
@@ -198,7 +200,7 @@ a {
       
       
       <div class="search-buttons">
-        <a id="student-button" href = "test">Add Student data</a>
+        <a id="student-button" href = "test" >Add Student data</a>
         <a id="teacher-button" href = "addteacher">Add Teacher data</a>
       </div>
       <div class="db-search">
