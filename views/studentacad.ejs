@@ -48,7 +48,7 @@
     </div>
     <div class="col">
       <h3>CGPI</h3>
-      <h1 id="cgpi"><%= cgpi %></h1>
+      <h1 id="cgpi">9</h1>
       <h6 id = "percent">Equivalent Percentage: 70.87</h6>
       <p>Dead KTs: 0 &nbsp &nbsp Live KTs: 0</p>
       <div id="donutchart" style="width: 300px; height: 300px;"></div>
@@ -663,7 +663,7 @@
   google.charts.load("current", {packages:["corechart"]});
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
-    var cgpi = parseFloat(<%= cgpi %>)
+    var cgpi = parseFloat(10)
     var max =10 - cgpi
     console.log(max)
     var data = google.visualization.arrayToDataTable([
@@ -688,12 +688,12 @@
   google.charts.load('current', {'packages':['corechart']});
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
-    var cgpi1 = parseFloat(<%= cgpi1 %>)
-    var cgpi2 = parseFloat(<%= cgpi2 %>)
-    var cgpi3 = parseFloat(<%= cgpi3 %>)
-    var cgpi4 = parseFloat(<%= cgpi4 %>)
-    var cgpi5 = parseFloat(<%= cgpi5 %>)
-    var cgpi6 = parseFloat(<%= cgpi6 %>)
+    var cgpi1 = parseFloat(10)
+    var cgpi2 = parseFloat(9)
+    var cgpi3 = parseFloat(8)
+    var cgpi4 = parseFloat(7)
+    var cgpi5 = parseFloat(8)
+    var cgpi6 = parseFloat(9)
     var data = google.visualization.arrayToDataTable([
           ['Semester', 'SGPI'],
           ['Sem I', cgpi1],
@@ -724,7 +724,7 @@
           x.style.display = "none";
         }
     }
-    var cgpit =  parseFloat(<%= cgpi %>)
+    var cgpit =  parseFloat(9)
     var percent = 7.4*cgpit+12
     document.getElementById("percent").innerHTML = 'Equivalent percentage = '+percent
     </script>

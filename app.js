@@ -448,7 +448,7 @@ app.get("/announce", function(req, res){
 } 
 });
 
-
+/*
 app.get("/users", function(req, res){
   if(!user1){
     res.redirect("/error");
@@ -466,7 +466,7 @@ app.get("/users", function(req, res){
 }else{
   res.redirect("/error");
 } 
-});
+});*/
 
 //************************************************************post requests
 app.post("/register", function(req, res){
@@ -631,6 +631,94 @@ app.post("/addplacement",function(req,res){
   }
 });
 });
+
+
+
+app.get("/users", function (req, res) {
+  Student.find({}, function (err, allDetails) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("users", { details: allDetails })
+    }
+  })
+})
+app.post("/users", function (req, res) {
+  var appbranch = req.body.branchsrch;
+  var appprn = req.body.prnsrch;
+  var appname = req.body.studname;
+  console.log(appbranch);
+  console.log(appprn);
+  console.log(appname);
+  if(!appprn&&!appname&&appbranch){
+  Student.find({ department: appbranch }, function (err, allDetails) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("users", { details: allDetails })
+    }
+  })
+}
+  else if(appprn&&!appname&&!appbranch){
+  Student.find({ prn: req.body.prnsrch }, function (err, allDetails) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("users", { details: allDetails })
+    }
+  })
+}
+  else if(!appprn&&appname&&!appbranch){
+  Student.find({ fname: req.body.studname }, function (err, allDetails) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("users", { details: allDetails })
+    }
+  })
+}
+else if(appprn&&appname&&appbranch){
+  Student.find({ fname: req.body.studname, prn: req.body.prnsrch, department: appbranch  }, function (err, allDetails) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("users", { details: allDetails })
+    }
+  })
+}
+else if(appprn&&appname&&!appbranch){
+  Student.find({ fname: req.body.studname, prn: req.body.prnsrch  }, function (err, allDetails) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("users", { details: allDetails })
+    }
+  })
+}
+else if(appprn&&!appname&&appbranch){
+  Student.find({ prn: req.body.prnsrch, department: appbranch  }, function (err, allDetails) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("users", { details: allDetails })
+    }
+  })
+}
+else if(!appprn&&appname&&appbranch){
+  Student.find({ fname: req.body.studname, department: appbranch  }, function (err, allDetails) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("users", { details: allDetails })
+    }
+  })
+}
+})
+
+app.get("/addstud", function (req, res) {
+res.render("addstud");
+});
+
 
 app.listen(3000, function() {
   console.log("Server started on port 3000.");

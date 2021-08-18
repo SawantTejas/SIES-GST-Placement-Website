@@ -295,8 +295,8 @@
   google.charts.load("current", { packages: ["corechart"] });
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
-    var placed = parseInt(<%= placed %>)
-    var notplaced = parseInt(<%= nplaced %>)
+    var placed = parseInt(100)
+    var notplaced = parseInt(200)
     console.log(placed)
     var data = google.visualization.arrayToDataTable([
       ['Status', 'Value'],
@@ -322,8 +322,8 @@
   google.charts.setOnLoadCallback(drawChart);
 
   function drawChart() {
-    var cplaced = parseInt(<%= ceplaced %>)
-    var cnotplaced = parseInt(<%= cenplaced %>)
+    var cplaced = parseInt(40)
+    var cnotplaced = parseInt(90)
     var data = google.visualization.arrayToDataTable([
       ['Status', 'Value'],
       ['Placed', cplaced],
