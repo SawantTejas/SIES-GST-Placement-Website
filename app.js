@@ -639,7 +639,7 @@ app.get("/users", function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render("users", { details: allDetails })
+      res.render("edit", { details: allDetails })
     }
   })
 })
@@ -655,7 +655,7 @@ app.post("/users", function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render("users", { details: allDetails })
+      res.render("edit", { details: allDetails })
     }
   })
 }
@@ -664,7 +664,7 @@ app.post("/users", function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render("users", { details: allDetails })
+      res.render("edit", { details: allDetails })
     }
   })
 }
@@ -673,7 +673,7 @@ app.post("/users", function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render("users", { details: allDetails })
+      res.render("edit", { details: allDetails })
     }
   })
 }
@@ -682,7 +682,7 @@ else if(appprn&&appname&&appbranch){
     if (err) {
       console.log(err);
     } else {
-      res.render("users", { details: allDetails })
+      res.render("edit", { details: allDetails })
     }
   })
 }
@@ -691,7 +691,7 @@ else if(appprn&&appname&&!appbranch){
     if (err) {
       console.log(err);
     } else {
-      res.render("users", { details: allDetails })
+      res.render("edit", { details: allDetails })
     }
   })
 }
@@ -700,7 +700,7 @@ else if(appprn&&!appname&&appbranch){
     if (err) {
       console.log(err);
     } else {
-      res.render("users", { details: allDetails })
+      res.render("edit", { details: allDetails })
     }
   })
 }
@@ -709,7 +709,7 @@ else if(!appprn&&appname&&appbranch){
     if (err) {
       console.log(err);
     } else {
-      res.render("users", { details: allDetails })
+      res.render("edit", { details: allDetails })
     }
   })
 }

@@ -207,7 +207,7 @@ a {
     font-family: 'Lato', sans-serif;
     font-size: 0.875em;
     width: 80%;
-    height: 70px;
+    height: 30px;
     padding: 0px 15px 0px 15px;
     
     background: transparent;
@@ -223,11 +223,7 @@ a {
     -ms-transition: all 0.3s ease-in-out;
   }
   
-  input:hover {
-    background: #abe7e6;
-    color: #0000;
-  }
-  
+
   textarea {
     width: 80%;
     max-width: 80%;

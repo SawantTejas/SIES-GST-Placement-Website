@@ -70,7 +70,7 @@ $(document).ready(function() {
         e.preventDefault();
         if(x < max_fields){ 
             x++; 
-            $(wrapper).append('<div style = "padding-bottom:20px; border-bottom: 1px solid #068481"><label for="prn">PRN</label><input type="text" id="prn" placeholder="Enter PRN" name="prn"><label for="email">Email:</label><input type="email" id="email" placeholder="Enter email" name="email"><label for="password">Password:</label><input type="password" id="pwd" placeholder="Enter password" name="password"><label for="placement_Status">Placement Status:</label><input type="text" id="ps" placeholder="Enter Status" name="placement_Status"><button type="submit">Submit</button><a href="#" class="delete">Delete</a></div><br><br></div>'); //add input box
+            $(wrapper).append('<div style = "padding-bottom:20px; border-bottom: 1px solid #068481"><label for="prn">PRN</label><input type="text" id="prn" placeholder="Enter PRN" name="prn"><label for="email">Email:</label><input type="email" id="email" placeholder="Enter email" name="email"><label for="password">Password:</label><input type="password" id="pwd" placeholder="Enter password" name="password"><label for="placement_Status">Placement Status:</label><input type="text" id="ps" placeholder="Enter Status" name="placement_Status"><a href="#" class="delete">Delete</a></div><br><br></div>'); //add input box
         }
 		else
 		{
@@ -101,8 +101,9 @@ $(document).ready(function() {
     <input type="password" id="pwd" placeholder="Enter password" name="password">
   <label for="placement_Status">Placement Status:</label>
   <input type="text" id="ps" placeholder="Enter Status" name="placement_Status">
-  <button type="submit">Submit</button></div><br><br>
   </div>
+  </div>
+  <button type="submit">Submit</button>
 </form>
 
 </body>
