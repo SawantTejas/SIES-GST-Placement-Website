@@ -766,6 +766,7 @@ const projectSchema = new mongoose.Schema({
   pswdym: String,
   psdesc: String,
   psgit: String,
+  psname: String,
 });
 
 const Project = new mongoose.model("projects", projectSchema);
@@ -795,6 +796,7 @@ app.post("/projform", function(req, res){
       pswdym: req.body.pwdym,
       psdesc: req.body.pdesc,
       psgit: req.body.pgit,
+      psname: user1.username,
   })
   projdetails.save();
   res.redirect("/achievements");
@@ -804,6 +806,7 @@ const achSchema = new mongoose.Schema({
   astitle: String,
   aswdym: String,
   asdesc: String,
+  asname: String,
 });
 
 const Achievement = new mongoose.model("achievements", achSchema);
@@ -832,6 +835,7 @@ app.post("/achform", function(req, res){
       astitle: req.body.atitle,
       aswdym: req.body.awdym,
       asdesc: req.body.adesc,
+      asname: user1.username,
   })
   achdetails.save();
   res.redirect("/achievements");
