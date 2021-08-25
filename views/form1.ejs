@@ -10,15 +10,15 @@
 </head>
 
 <body>
-	<form>
+	<form action = "/projform" method="POST">
 		<label for="title"><strong>Title</strong></label><br>
-		<input type="text" name="title" placeholder="title" class="title" />
+		<input type="text" name="ptitle" placeholder="title" class="title" />
 		<label for="wdym"><strong>When did you make</strong></label><br>
-		<input type="text" name="wdym" placeholder="when did you make" class="wdym" />
+		<input type="text" name="pwdym" placeholder="when did you make" class="wdym" />
 		<label for="description"><strong>Description</strong></label><br>
-		<textarea rows="4" cols="50" name="description" placeholder="description" class="description"></textarea>
+		<textarea rows="4" cols="50" name="pdesc" placeholder="description" class="description"></textarea>
 		<label for="avatar"><strong>Github repository</strong></label>
-		<input type="text" name="title" placeholder="Github repository" class="title" />
+		<input type="text" name="pgit" placeholder="Github repository" class="title" />
 		<label for="avatar"><strong>Project report</strong></label>
 		<div class="file">
 			<input type="file" accept="image/*,.pdf" style="padding: 5PX;">
