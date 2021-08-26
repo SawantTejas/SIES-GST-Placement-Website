@@ -50,7 +50,6 @@ const studentSchema = new mongoose.Schema({
     placement_hist: [{Company: String, Package: String, Role: String}],
     achieve: [{atitle: String, certi: String}],
     skills: [{name: String, type: String}]
-
   });
 const Student = new mongoose.model("Student", studentSchema);
 //student schema ends
@@ -174,7 +173,13 @@ app.get("/academics", function(req, res){
         res.redirect("/error");
       }
       else{
-  res.render("studentacad");
+        Project.find({ psname: user1.username }, function (err, allDetails) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.render("studentacad", { details: allDetails })
+        }
+      })
 }
 });
 } else{
@@ -193,7 +198,13 @@ app.get("/achievements", function(req, res){
         res.redirect("/error");
       }
       else{
-  res.render("studentachmnt");
+        Achievement.find({ asname: user1.username }, function (err, allDetails) {
+          if (err) {
+            console.log(err);
+          } else {
+            res.render("studentachmnt", { details: allDetails })
+          }
+        })
 }
 });
 } else{

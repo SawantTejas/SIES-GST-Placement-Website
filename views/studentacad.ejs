@@ -33,7 +33,7 @@
           <a href="placement" class="nav_link"> <i class="bi bi-star"></i> <span class="nav_name">Placements</span> </a>
           <a href="announcements" class="nav_link"> <i class='bx bxs-megaphone nav_icon'></i><span class="nav_name">Announcements</span> </a>
          </div>
-      </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
+      </div> <a href="logout" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
     </nav>
   </div>
   <!--Container Main start-->
@@ -60,24 +60,21 @@
 <a href="projform" class="btn btn-primary" style="margin-top: 2%; float: right;">Update</a>
 <h1 style="font-size: 60px;">Projects</h1><br>
 <div style="margin-left: 5%; margin-right: 5%;">
-  <div class="card">
-    <div class="card-header">
-      Agvanced HTML and Web Technology SDP Project
-    </div>
-    <div class="card-body">
-      <h4 class="card-title">Freelancing Website</h4>
-      <p class="card-text">Description: An Online Platform for Freelancers, where clients can post their task and its requirements, and all the freelancers on the website will be able to make bids for the task. The client can then choose the Freelancer they think is the most appropriate for the Job.</p>
-      <p class="card-text">Languages and Technologies: HTML, CSS, PHP</p>
-      <div class="d-flex">
-        <div class="col-md-10 col-10">
-          <p style="font-weight: bold;">Grade: A</p>
+  <% if(details!=null) { %>
+    <% details.forEach(function(item){ %>
+      <div class="card">
+        <div class="card-header">
+          <%= item.pswdym %>
         </div>
-        <div class="col-md-2 col-2">
+        <div class="card-body">
+          <h4 class="card-title"><%= item.pstitle %></h4>
+          <p class="card-text"><%= item.psdesc %></p>
+          <p class="card-text">Languages and Technologies: HTML, CSS, PHP</p>
           <a href="#" class="btn btn-primary">View Screenshots</a>
         </div>
-      </div>
-    </div>
-  </div><br>
+      </div><br>
+    <% }) %>
+  <% } %>
   <div class="card">
     <div class="card-header">
       Mini Project(Semester V WDL)

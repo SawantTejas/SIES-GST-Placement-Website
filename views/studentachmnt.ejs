@@ -37,7 +37,7 @@
           <a href="announcements" class="nav_link"> <i class='bx bxs-megaphone nav_icon'></i><span
               class="nav_name">Announcements</span> </a>
         </div>
-      </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span>
+      </div> <a href="logout" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span>
       </a>
     </nav>
   </div>
@@ -50,6 +50,22 @@
 <a href="achform" class="btn btn-primary" style="margin-top: 2%; float: right;">Update</a>
 <h1 style="font-size: 60px;">Achievements</h1><br>
 <div style="margin-left: 5%; margin-right: 5%;">
+  <% if(details!=null) { %>
+    <% details.forEach(function(item){ %>
+      <div class="card">
+        <div class="card-header">
+          <%= item.aswdym %>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title"><%= item.astitle %></h4>
+          <p class="card-text"><%= item.asdesc %></p>
+          <p class="card-text">Languages and Technologies: HTML, CSS, PHP</p>
+          <a href="#" class="btn btn-primary">View Screenshots</a>
+        </div>
+      </div><br>
+    <% }) %>
+  <% } %>
+        
   <div class="card">
     <div class="card-header">
       Mini Project(Semester V WDL)
@@ -70,7 +86,8 @@
         </div>
       </div>
     </div>
-  </div><br>
+  </div>
+  <br>
   
 
 </div>
