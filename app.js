@@ -78,6 +78,29 @@ const Admin = new mongoose.model("Admin", adminSchema);
 
 
 //teacher schema ends
+
+const announceSchema = new mongoose.Schema({
+  annstitle : String,
+  annsdescription : String,
+  annslink : String,
+});
+
+const Announcements = new mongoose.model("announcement",announceSchema);
+
+app.get("/announceform", function(req, res){
+  res.render("form4");
+})
+
+app.post("/announceform", function(req, res){
+  var announcedetail = new Announcements({
+    annstitle : req.body.annstitle,
+    annsdescription : req.body.annsdescription,
+    annslink : req.body.annslink,
+  })
+  announcedetail.save();
+  res.redirect("/announceform");
+})
+
 const userSchema = new mongoose.Schema({
   username: String,
   password: String,
@@ -651,7 +674,7 @@ app.post("/users", function (req, res) {
   console.log(appprn);
   console.log(appname);
   if(!appprn&&!appname&&appbranch){
-  Student.find({ department: appbranch }, function (err, allDetails) {
+  Student.find({ department: appbranch }, function (err, allDetails) { 
     if (err) {
       console.log(err);
     } else {
