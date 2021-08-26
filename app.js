@@ -685,6 +685,8 @@ app.get("/users", function (req, res) {
     }
   })
 })
+
+
 app.post("/users", function (req, res) {
   var appbranch = req.body.branchsrch;
   var appprn = req.body.prnsrch;
@@ -761,6 +763,31 @@ app.get("/addstud", function (req, res) {
 res.render("addstud");
 });
 
+app.post("/addstud",function (req,res){
+  var newUser = {
+    username: req.body.email,
+    role: "Student"
+}
+User.register(newUser, req.body.password, function(err, user){
+  if (err) {
+    console.log(err);
+  }
+});
+  const newStudent = new Student({
+    prn: req.body.prn,
+    username: req.body.email,
+    placement_Status: req.body.placement_Status,
+    role: "Student"
+})
+newStudent.save(function(err){
+    if(err){
+        console.log(err);
+    }else{
+      res.redirect("/addstud");
+    }
+})
+
+})
 const projectSchema = new mongoose.Schema({
   pstitle: String,
   pswdym: String,

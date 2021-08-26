@@ -59,39 +59,14 @@ padding: 10px;}
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script>
-$(document).ready(function() {
-    var max_fields      = 10;
-    var wrapper         = $(".container1"); 
-    var add_button      = $(".add_form_field"); 
-    
-    var x = 1; 
-    $(add_button).click(function(e){ 
-        e.preventDefault();
-        if(x < max_fields){ 
-            x++; 
-            $(wrapper).append('<div style = "padding-bottom:20px; border-bottom: 1px solid #068481"><label for="prn">PRN</label><input type="text" id="prn" placeholder="Enter PRN" name="prn"><label for="email">Email:</label><input type="email" id="email" placeholder="Enter email" name="email"><label for="password">Password:</label><input type="password" id="pwd" placeholder="Enter password" name="password"><label for="placement_Status">Placement Status:</label><input type="text" id="ps" placeholder="Enter Status" name="placement_Status"><a href="#" class="delete">Delete</a></div><br><br></div>'); //add input box
-        }
-		else
-		{
-		alert('You Reached the limits')
-		}
-    });
-    
-    $(wrapper).on("click",".delete", function(e){ 
-        e.preventDefault(); $(this).parent('div').remove(); x--;
-    })
-});
-</script>
+
 </head>
 <body>
 
 <h2>Add Student</h2>
   <br>
-<form class="form-inline" action="" method="POST">
+<form class="form-inline" action="/addstud" method="POST" onkeydown="return event.key != 'Enter';">
 <div class="container1">
-    <button class="add_form_field">Add New Entry &nbsp; <span style="font-size:16px; font-weight:bold;">+ </span></button>
-    <br><br><br>
     <div style = "padding-bottom: 20px;border-bottom: 1px solid #068481">
     <label for="prn">PRN</label>
     <input type="text" id="prn" placeholder="Enter PRN" name="prn">
@@ -105,6 +80,7 @@ $(document).ready(function() {
   </div>
   <button type="submit">Submit</button>
 </form>
-
+<br>
+<a href="test" style = "text-decoration: none; color:#fff;background-color: #068481; padding: 10px 20px 10px 20px">Upload using CSV</a>
 </body>
 </html>
