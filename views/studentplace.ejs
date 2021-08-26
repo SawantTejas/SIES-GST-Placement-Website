@@ -8,7 +8,8 @@
 
   <!-- Bootstrap CSS -->
   <link rel="icon" type="text/css" href="SIES_Spinner.png">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
@@ -17,7 +18,7 @@
   <title>Admin Profile</title>
 </head>
 
-<body id="body-pd" class = "noselect">
+<body id="body-pd" class="noselect">
   <script src="js/main2.js"></script>
   <header class="header" id="header">
     <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
@@ -25,21 +26,107 @@
   </header>
   <div class="l-navbar" id="nav-bar">
     <nav class="nav">
-      <div> <a href="index" class="nav_logo"> <img src="img/SIES_Spinner.png" width="32" height="32"> <span class="nav_logo-name">SIES GST</span> </a>
+      <div> <a href="#" class="nav_logo"> <img src="img/SIES_Spinner.png" width="32" height="32"> <span
+            class="nav_logo-name">SIES GST</span> </a>
         <div class="nav_list">
-          <a href="dashboard" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a>
-          <a href="academics" class="nav_link"> <i class="bi bi-book"></i> <span class="nav_name">Academics</span> </a>
-          <a href="achievements" class="nav_link"> <i class="bi bi-trophy"></i> <span class="nav_name">Projects & Skills</span> </a>
-          <a href="placement" class="nav_link active"> <i class="bi bi-star"></i> <span class="nav_name">Placements</span> </a>
-          <a href="announcements" class="nav_link"> <i class='bx bxs-megaphone nav_icon'></i><span class="nav_name">Announcements</span> </a>
-         </div>
-      </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
+          <a href="dashboard" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span
+              class="nav_name">Dashboard</span> </a>
+          <a href="academics" class="nav_link"> <i class="bi bi-book"></i> <span class="nav_name">Academics & Projects</span> </a>
+          <a href="achievements" class="nav_link"> <i class="bi bi-trophy"></i> <span class="nav_name">Achievements</span> </a>
+          <a href="placement" class="nav_link active"> <i class="bi bi-star"></i> <span
+              class="nav_name">Placements</span> </a>
+          <a href="announcements" class="nav_link"> <i class='bx bxs-megaphone nav_icon'></i><span
+              class="nav_name">Announcements</span> </a>
+        </div>
+      </div> <a href="logout" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span>
+      </a>
     </nav>
   </div>
   <!--Container Main start-->
 
+  <h1 style="font-size: 60px;">Placement</h1><br>
+  <div class="mainbody" style="margin: 0px 50px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-6 col-12">
+          <div class="card" style="width: 100%;">
+            <div class="card-body">
+              <h4 class="card-title">Preference</h4>
 
+              <h2 class="card-text">Placements</h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+          <div class="card" style="width: 100%;">
+            <div class="card-body">
+              <h4 class="card-title">Status</h4>
+
+              <h2 class="card-text">Not Placed</h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-12">
+          <div class="card" style="width: 100%;">
+            <div class="card-body">
+              <h4 class="card-title">Package</h4>
+
+              <h2 class="card-text">NA</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br>
+  </div>
+  <h1 style="font-size: 60px;">Placement History</h1><br>
+  <div class="mainbody" style="margin: 0px 50px;">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Organization</th>
+            <th scope="col">Package</th>
+            <th scope="col">Reached</th>
+            <th scope="col">Placed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Continuum</td>
+            <td>6.5 LPA</td>
+            <td>Round 3</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <th scope="row">1</th>
+            <td>Google</td>
+            <td>65 LPA</td>
+            <td>Round 2</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <th scope="row">1</th>
+            <td>Microsoft</td>
+            <td>60 LPA</td>
+            <td>Round 1</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <th scope="row">1</th>
+            <td>Amazon</td>
+            <td>20 LPA</td>
+            <td>Round 4</td>
+            <td>No</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<h1 style="font-size: 60px;">Placement</h1><br>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 </html>

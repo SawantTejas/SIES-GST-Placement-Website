@@ -50,7 +50,6 @@ const studentSchema = new mongoose.Schema({
     placement_hist: [{Company: String, Package: String, Role: String}],
     achieve: [{atitle: String, certi: String}],
     skills: [{name: String, type: String}]
-  
   });
 const Student = new mongoose.model("Student", studentSchema);
 //student schema ends
@@ -183,7 +182,7 @@ app.get("/dashboard", function(req, res){
     });
 }else{
   res.redirect("/error");
-} 
+}
 });
 
 app.get("/academics", function(req, res){
@@ -197,12 +196,18 @@ app.get("/academics", function(req, res){
         res.redirect("/error");
       }
       else{
-  res.render("studentacad");
+        Project.find({ psname: user1.username }, function (err, allDetails) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.render("studentacad", { details: allDetails })
+        }
+      })
 }
 });
 } else{
   res.redirect("/error");
-} 
+}
 });
 
 app.get("/achievements", function(req, res){
@@ -216,12 +221,18 @@ app.get("/achievements", function(req, res){
         res.redirect("/error");
       }
       else{
-  res.render("studentachmnt");
+        Achievement.find({ asname: user1.username }, function (err, allDetails) {
+          if (err) {
+            console.log(err);
+          } else {
+            res.render("studentachmnt", { details: allDetails })
+          }
+        })
 }
 });
 } else{
   res.redirect("/error");
-} 
+}
 });
 
 app.get("/announcements", function(req, res){
@@ -240,7 +251,7 @@ app.get("/announcements", function(req, res){
 });
 } else{
   res.redirect("/error");
-} 
+}
 });
 
 app.get("/placement", function(req, res){
@@ -259,7 +270,7 @@ app.get("/placement", function(req, res){
 });
 } else{
   res.redirect("/error");
-} 
+}
 });
 
 app.get("/formstudent", function(req, res){
@@ -278,46 +289,9 @@ app.get("/formstudent", function(req, res){
 });
 } else{
   res.redirect("/error");
-} 
-});
-
-app.get("/formproject", function(req, res){
-  if(!user1){
-    res.redirect("/error");
-  }
-  if(user1.role == "Student"){
-    Student.findOne({ username: user1.username }, function (err, student) {
-      if(err){
-        console.log(err);
-        res.redirect("/error");
-      }
-      else{
-  res.render("form1");
 }
 });
-} else{
-  res.redirect("/error");
-} 
-});
 
-app.get("/formskill", function(req, res){
-  if(!user1){
-    res.redirect("/error");
-  }
-  if(user1.role == "Student"){
-    Student.findOne({ username: user1.username }, function (err, student) {
-      if(err){
-        console.log(err);
-        res.redirect("/error");
-      }
-      else{
-  res.render("form3");
-}
-});
-} else{
-  res.redirect("/error");
-} 
-});
 
 //teacher
 app.get("/tdashboard", function(req, res){
@@ -336,7 +310,7 @@ app.get("/tdashboard", function(req, res){
 });
 } else{
   res.redirect("/error");
-} 
+}
 });
 app.get("/tplacement", function(req, res){
   if(!user1){
@@ -354,7 +328,7 @@ app.get("/tplacement", function(req, res){
 });
 }else{
   res.redirect("/error");
-} 
+}
 });
 app.get("/tstudents", function(req, res){
   if(!user1){
@@ -367,13 +341,92 @@ app.get("/tstudents", function(req, res){
         res.redirect("/error");
       }
       else{
-  res.render("teacherstud");
+        Student.find({}, function (err, allDetails) {
+          if (err) {
+            console.log(err);
+          } else {
+            res.render("teacherstud", { details: allDetails })
+          }
+        })
 }
 });
 }else{
   res.redirect("/error");
-}  
+}
 });
+
+app.post("/tstud", function (req, res) {
+  var appbranch = req.body.branchsrch;
+  var appprn = req.body.prnsrch;
+  var appname = req.body.studname;
+  console.log(appbranch);
+  console.log(appprn);
+  console.log(appname);
+  if(!appprn&&!appname&&appbranch){
+  Student.find({ department: appbranch }, function (err, allDetails) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("teacherstud", { details: allDetails })
+    }
+  })
+}
+  else if(appprn&&!appname&&!appbranch){
+  Student.find({ prn: req.body.prnsrch }, function (err, allDetails) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("teacherstud", { details: allDetails })
+    }
+  })
+}
+  else if(!appprn&&appname&&!appbranch){
+  Student.find({ fname: req.body.studname }, function (err, allDetails) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("teacherstud", { details: allDetails })
+    }
+  })
+}
+else if(appprn&&appname&&appbranch){
+  Student.find({ fname: req.body.studname, prn: req.body.prnsrch, department: appbranch  }, function (err, allDetails) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("teacherstud", { details: allDetails })
+    }
+  })
+}
+else if(appprn&&appname&&!appbranch){
+  Student.find({ fname: req.body.studname, prn: req.body.prnsrch  }, function (err, allDetails) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("teacherstud", { details: allDetails })
+    }
+  })
+}
+else if(appprn&&!appname&&appbranch){
+  Student.find({ prn: req.body.prnsrch, department: appbranch  }, function (err, allDetails) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("teacherstud", { details: allDetails })
+    }
+  })
+}
+else if(!appprn&&appname&&appbranch){
+  Student.find({ fname: req.body.studname, department: appbranch  }, function (err, allDetails) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("teacherstud", { details: allDetails })
+    }
+  })
+}
+})
+
 app.get("/tannouncements", function(req, res){
   if(!user1){
     res.redirect("/error");
@@ -390,7 +443,7 @@ app.get("/tannouncements", function(req, res){
 });
 }else{
   res.redirect("/error");
-} 
+}
 });
 
 //admin
@@ -410,7 +463,7 @@ app.get("/dashboard_admin", function(req, res){
 });
 }else{
   res.redirect("/error");
-} 
+}
 });
 
 
@@ -430,7 +483,7 @@ app.get("/statistics", function(req, res){
 });
 }else{
   res.redirect("/error");
-} 
+}
 });
 
 app.get("/messages", function(req, res){
@@ -449,7 +502,7 @@ app.get("/messages", function(req, res){
 });
 }else{
   res.redirect("/error");
-} 
+}
 });
 
 app.get("/announce", function(req, res){
@@ -468,7 +521,7 @@ app.get("/announce", function(req, res){
 });
 }else{
   res.redirect("/error");
-} 
+}
 });
 
 /*
@@ -488,7 +541,7 @@ app.get("/users", function(req, res){
 });
 }else{
   res.redirect("/error");
-} 
+}
 });*/
 
 //************************************************************post requests
@@ -544,18 +597,18 @@ app.post("/login", function(req, res){
     }
   });
 
-});   
+});
 
 
 
 //csv for student
-app.post("/test",  function (req, res) { 
+app.post("/test",  function (req, res) {
 const csvfilepath =  req.body.file;
     csvtojson().fromFile(csvfilepath).then((json) => {
       var i;
       for (i = 0; i < json.length; i++) {
         console.log(json[i].password)
-        
+
         var newUser = {
             username: json[i].email,
             role: "Student"
@@ -563,7 +616,7 @@ const csvfilepath =  req.body.file;
         User.register(newUser, json[i].password, function(err, user){
           if (err) {
             console.log(err);
-          } 
+          }
         });
 
         const newStudent = new Student({
@@ -591,7 +644,7 @@ const csvfilepath =  req.body.file;
 
 
 //csv for teacher
-app.post("/addteacher", function (req, res) { 
+app.post("/addteacher", function (req, res) {
   const csvfilepath1 = req.body.file;
       csvtojson().fromFile(csvfilepath1).then((json) => {
         var i;
@@ -604,7 +657,7 @@ app.post("/addteacher", function (req, res) {
         User.register(newUser, json[i].password, function(err, user){
           if (err) {
             console.log(err);
-          } 
+          }
         });
           var newTeacher = new Teacher({
               fname: json[i].fname,
@@ -622,7 +675,7 @@ app.post("/addteacher", function (req, res) {
       });
       res.redirect("/addteacher");
   });
-  
+
 
 //csv for placement
 
@@ -662,10 +715,12 @@ app.get("/users", function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render("users", { details: allDetails })
+      res.render("edit", { details: allDetails })
     }
   })
 })
+
+
 app.post("/users", function (req, res) {
   var appbranch = req.body.branchsrch;
   var appprn = req.body.prnsrch;
@@ -678,7 +733,7 @@ app.post("/users", function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render("users", { details: allDetails })
+      res.render("edit", { details: allDetails })
     }
   })
 }
@@ -687,7 +742,7 @@ app.post("/users", function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render("users", { details: allDetails })
+      res.render("edit", { details: allDetails })
     }
   })
 }
@@ -696,7 +751,7 @@ app.post("/users", function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render("users", { details: allDetails })
+      res.render("edit", { details: allDetails })
     }
   })
 }
@@ -705,7 +760,7 @@ else if(appprn&&appname&&appbranch){
     if (err) {
       console.log(err);
     } else {
-      res.render("users", { details: allDetails })
+      res.render("edit", { details: allDetails })
     }
   })
 }
@@ -714,7 +769,7 @@ else if(appprn&&appname&&!appbranch){
     if (err) {
       console.log(err);
     } else {
-      res.render("users", { details: allDetails })
+      res.render("edit", { details: allDetails })
     }
   })
 }
@@ -723,7 +778,7 @@ else if(appprn&&!appname&&appbranch){
     if (err) {
       console.log(err);
     } else {
-      res.render("users", { details: allDetails })
+      res.render("edit", { details: allDetails })
     }
   })
 }
@@ -732,7 +787,7 @@ else if(!appprn&&appname&&appbranch){
     if (err) {
       console.log(err);
     } else {
-      res.render("users", { details: allDetails })
+      res.render("edit", { details: allDetails })
     }
   })
 }
@@ -741,6 +796,112 @@ else if(!appprn&&appname&&appbranch){
 app.get("/addstud", function (req, res) {
 res.render("addstud");
 });
+
+app.post("/addstud",function (req,res){
+  var newUser = {
+    username: req.body.email,
+    role: "Student"
+}
+User.register(newUser, req.body.password, function(err, user){
+  if (err) {
+    console.log(err);
+  }
+});
+  const newStudent = new Student({
+    prn: req.body.prn,
+    username: req.body.email,
+    placement_Status: req.body.placement_Status,
+    role: "Student"
+})
+newStudent.save(function(err){
+    if(err){
+        console.log(err);
+    }else{
+      res.redirect("/addstud");
+    }
+})
+
+})
+const projectSchema = new mongoose.Schema({
+  pstitle: String,
+  pswdym: String,
+  psdesc: String,
+  psgit: String,
+  psname: String,
+});
+
+const Project = new mongoose.model("projects", projectSchema);
+
+app.get("/projform", function(req, res){
+  if(!user1){
+    res.redirect("/error");
+  }
+  if(user1.role == "Student"){
+    Student.findOne({ username: user1.username }, function (err, student) {
+      if(err){
+        console.log(err);
+        res.redirect("/error");
+      }
+      else{
+  res.render("form1");
+}
+});
+} else{
+  res.redirect("/error");
+}
+})
+
+app.post("/projform", function(req, res){
+  var projdetails = new Project({
+      pstitle: req.body.ptitle,
+      pswdym: req.body.pwdym,
+      psdesc: req.body.pdesc,
+      psgit: req.body.pgit,
+      psname: user1.username,
+  })
+  projdetails.save();
+  res.redirect("/achievements");
+})
+
+const achSchema = new mongoose.Schema({
+  astitle: String,
+  aswdym: String,
+  asdesc: String,
+  asname: String,
+});
+
+const Achievement = new mongoose.model("achievements", achSchema);
+
+app.get("/achform", function(req, res){
+  if(!user1){
+    res.redirect("/error");
+  }
+  if(user1.role == "Student"){
+    Student.findOne({ username: user1.username }, function (err, student) {
+      if(err){
+        console.log(err);
+        res.redirect("/error");
+      }
+      else{
+  res.render("form3");
+}
+});
+} else{
+  res.redirect("/error");
+}
+})
+
+app.post("/achform", function(req, res){
+  var achdetails = new Achievement({
+      astitle: req.body.atitle,
+      aswdym: req.body.awdym,
+      asdesc: req.body.adesc,
+      asname: user1.username,
+  })
+  achdetails.save();
+  res.redirect("/achievements");
+})
+
 
 
 app.listen(3000, function() {

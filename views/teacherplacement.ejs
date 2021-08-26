@@ -208,6 +208,9 @@
           <div id="piechart" style="width: 400px; height: 400px;"></div>
         </div>
       </div>
+      <div>
+        <div id="barchart" style="width: 400px; height: 400px;"></div>
+      </div>
     </div>
     <div style="margin: 2% 5%;">
       <h2>Placement rounds data</h2>
@@ -338,6 +341,30 @@
     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
     chart.draw(data, options);
+  }
+</script>
+<script type="text/javascript">
+  google.charts.load("current", { packages: ["corechart"] });
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Year', 'Visitations', { role: 'style' } ],
+        ['CE', 70, 'stroke-color: #068481; stroke-opacity: 0.6; stroke-width: 8; fill-color: #adf7f5; fill-opacity: 0.2'],
+        ['IT', 44, 'stroke-color: #068481; stroke-opacity: 0.6; stroke-width: 8; fill-color: #adf7f5; fill-opacity: 0.2'],
+        ['EXTC', 36, 'stroke-color: #068481; stroke-opacity: 0.6; stroke-width: 8; fill-color: #adf7f5; fill-opacity: 0.2'],
+        ['MECH', 42, 'stroke-color: #068481; stroke-opacity: 0.6; stroke-width: 8; fill-color: #adf7f5; fill-opacity: 0.2'],
+        ['PPT', 18, 'stroke-color: #068481; stroke-opacity: 0.6; stroke-width: 8; fill-color: #adf7f5; fill-opacity: 0.2']
+      ]);
+      var options = {
+        title: "Students Placed from each Department",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+
+      var chart = new google.visualization.BarChart(document.getElementById("barchart"));
+      chart.draw(data, options);
   }
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
