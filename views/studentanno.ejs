@@ -44,15 +44,18 @@
     </div>
   </div>
   <div style="margin-left: 5%; margin-right: 5%;">
+    <% if(details!=null) { %>
+      <% details.forEach(function(item){ %>
     <div class="card" style="width: auto;">
       <div class="card-body">
-        <h3 class="card-title">Quantitative Aptitude Test</h3>
+        <h3 class="card-title"><%= item.annstitle %></h3>
         <h6 class="card-subtitle mb-2 text-muted">Test</h6>
-        <p class="card-text">All students are required to attempt this test on or before 1st August, to practice and
-          improve their aptitude skills</p>
-        <a href="#" class="card-link">Test Link</a>
+        <p class="card-text"><%= item.annsdescription %></p>
+        <a href="#" class="card-link"><%= item.annslink %></a>
       </div>
     </div><br>
+    <% }) %>
+    <% } %>
 
     <div class="card" style="width: auto;">
       <div class="card-body">

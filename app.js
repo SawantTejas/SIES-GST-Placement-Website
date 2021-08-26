@@ -78,27 +78,7 @@ const Admin = new mongoose.model("Admin", adminSchema);
 
 //teacher schema ends
 
-const announceSchema = new mongoose.Schema({
-  annstitle : String,
-  annsdescription : String,
-  annslink : String,
-});
 
-const Announcements = new mongoose.model("announcement",announceSchema);
-
-app.get("/announceform", function(req, res){
-  res.render("form4");
-})
-
-app.post("/announceform", function(req, res){
-  var announcedetail = new Announcements({
-    annstitle : req.body.annstitle,
-    annsdescription : req.body.annsdescription,
-    annslink : req.body.annslink,
-  })
-  announcedetail.save();
-  res.redirect("/announceform");
-})
 
 const userSchema = new mongoose.Schema({
   username: String,
@@ -246,7 +226,13 @@ app.get("/announcements", function(req, res){
         res.redirect("/error");
       }
       else{
-  res.render("studentanno");
+        Announcements.find({  }, function (err, allDetails) {
+          if (err) {
+            console.log(err);
+          } else {
+            res.render("studentanno", { details: allDetails })
+          }
+        })
 }
 });
 } else{
@@ -900,6 +886,43 @@ app.post("/achform", function(req, res){
   })
   achdetails.save();
   res.redirect("/achievements");
+})
+
+const announceSchema = new mongoose.Schema({
+  annstitle : String,
+  annsdescription : String,
+  annslink : String,
+});
+
+const Announcements = new mongoose.model("announcement",announceSchema);
+
+app.get("/announceform", function(req, res){
+  if(!user1){
+    res.redirect("/error");
+  }
+  if(user1.role == "Teacher"){
+  Teacher.findOne({ username: user1.username }, function (err, teacher) {
+      if(err){
+        console.log(err);
+        res.redirect("/error");
+      }
+      else{
+  res.render("form4");
+}
+});
+} else{
+  res.redirect("/error");
+}
+})
+
+app.post("/announceform", function(req, res){
+  var announcedetail = new Announcements({
+    annstitle : req.body.annstitle,
+    annsdescription : req.body.annsdescription,
+    annslink : req.body.annslink,
+  })
+  announcedetail.save();
+  res.redirect("/announceform");
 })
 
 
