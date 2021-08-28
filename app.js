@@ -292,6 +292,42 @@ app.get("/formstudent", function(req, res){
 }
 });
 
+app.post("/formstudent", function(req, res){
+  Student.update({username: user1.username},{$set: { "fname": req.body.upfname, "lname": req.body.uplname, "department": req.body.upbranch, "year": req.body.upphone}}, function(err, user) {
+    if (err) throw error
+    console.log(user);
+    console.log("update user complete");
+    res.redirect("/dashboard");
+});
+})
+
+app.get("/formteacher", function(req, res){
+  if(!user1){
+    res.redirect("/error");
+  }
+  if(user1.role == "Teacher"){
+    Teacher.findOne({ username: user1.username }, function (err, teacher) {
+      if(err){
+        console.log(err);
+        res.redirect("/error");
+      }
+      else{
+  res.render("form6");
+}
+});
+} else{
+  res.redirect("/error");
+}
+});
+
+app.post("/formteacher", function(req, res){
+  Teacher.update({username: user1.username},{$set: { "fname": req.body.upfname, "lname": req.body.uplname, "department": req.body.upbranch}}, function(err, user) {
+    if (err) throw error
+    console.log(user);
+    console.log("update user complete");
+    res.redirect("/tdashboard");
+});
+})
 
 //teacher
 app.get("/tdashboard", function(req, res){
