@@ -37,7 +37,7 @@
   </div>
   <!--Container Main start-->
   <div class="height-100">
-    <h1 style="font-size: 60px;">Hello Varsha!</h1><br>
+    <h1 style="font-size: 60px;">Hello <%= fname %> <%= lname %>!</h1><br>
 
     <div class="container">
       <div class="row">
@@ -46,11 +46,11 @@
             <div class="card-body">
               <h3 class="card-title">Branch</h3>
 
-              <h1 class="card-text">CE</h1>
+              <h1 class="card-text"><%= dep %></h1>
             </div>
           </div>
         </div>
-        <div class="col-md-4 col-sm-6 col-12">
+      <!--  <div class="col-md-4 col-sm-6 col-12">
           <div class="card" style="width: 100%;">
             <div class="card-body">
               <h3 class="card-title">Expertise</h3>
@@ -58,13 +58,13 @@
               <h1 class="card-text">ML, AI, etc</h1>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="col-md-4 col-sm-12 col-12">
           <div class="card" style="width: 100%;">
             <div class="card-body">
               <h3 class="card-title">Roles</h3>
 
-              <h4 class="card-text">Head of Placement Activities for CE</h4>
+              <h1 class="card-text"><%= role %></h4>
             </div>
           </div>
         </div>
@@ -73,20 +73,20 @@
     <br><br><br>
     <div class="card" style="margin:0px 50px;">
       <div class="card-body">
-        <h2 class="card-title" >Student Details</h2>
+        <h2 class="card-title" >Teacher Details</h2>
         <div class="container" style="font-size: 20px;">
           <div class="row" style="padding: 10px;">
             <div class="col-md-2 col-sm-6 col-12"><img src="img/tprofile.png" width="200px" alt=""></div>
             <div class="col-md-10 col-sm-6 col-12">
               <div class="container" style="font-size: 20px;"><div class="row" style="padding: 10px;">
-                <div class="col-md-6 col-sm-12"><p class="card-text">Name: Varsha Patil</p></div>
+                <div class="col-md-6 col-sm-12"><p class="card-text">Name:<%= fname %> <%= lname %></p></div>
                 <div class="col-md-6 col-sm-12"><p class="card-text">PRN: 10</p></div></div>
               <div class="row" style="padding: 10px;">
-                <div class="col-md-6 col-sm-12"><p class="card-text">Branch: CE</p></div>
+                <div class="col-md-6 col-sm-12"><p class="card-text">Branch: <%= dep %></p></div>
                 <div class="col-md-6 col-sm-12"><p class="card-text">Year: NA</p></div></div>
               <div class="row" style="padding: 10px;">
                 <div class="col-md-6 col-sm-12"><p class="card-text">Phone: NA</p></div>
-                <div class="col-md-6 col-sm-12"><p class="card-text">E-mail: varsha.patil@siesgst.ac.in</p></div></div>
+                <div class="col-md-6 col-sm-12"><p class="card-text">E-mail: <%= username %></p></div></div>
               </div><br>
             </div>
           </div>
