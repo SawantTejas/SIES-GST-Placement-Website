@@ -188,7 +188,7 @@
             <i class="fa fa-clock"></i>
             <p id="number4" class="number">5</p>
             <span></span>
-            <p>Recent placemnts</p>
+            <p>Recent placements</p>
           </div>
         </div>
       </div>
@@ -202,6 +202,9 @@
         <div class="col">
           <div id="piechart" style="width: 400px; height: 400px;"></div>
         </div>
+      </div>
+      <div>
+        <div id="barchart" style="width: 400px; height: 400px;"></div>
       </div>
     </div>
     <div style="margin: 2% 5%;">
@@ -278,8 +281,23 @@
         </div>
       </section>
       <br><br>
+      <div style="display: none">
+          <h1 id = "NotPlaced"><%= stud%></h1>
+          <h1 id = "Placed"><%= placed%></h1>
+          <h1 id = "CE"><%= ce%></h1>
+          <h1  id = "IT"><%= it%></h1>
+          <h1 id = "MECH"><%= mech%></h1>
+          <h1 id = "EXTC"><%= extc%></h1>
+          <h1 id = "PPT"><%= ppt%></h1>
+          <table> <!-- Table for placement data-->
+            <% placement.forEach(function(item){ %>
+              <td>HIIII</td>
+            <% }) %>
+          </table>
+      </div>
     </div>
   </div>
+
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -290,10 +308,13 @@
   google.charts.load("current", { packages: ["corechart"] });
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
+    var placed = parseInt(document.getElementById("NotPlaced").textContent)
+    var notplaced = parseInt(document.getElementById("Placed").textContent)
+    console.log(placed)
     var data = google.visualization.arrayToDataTable([
       ['Status', 'Value'],
-      ['Placed', 300],
-      ['Not placed', 200],
+      ['Not Placed', placed],
+      ['Placed', notplaced],
 
     ]);
 
@@ -301,7 +322,11 @@
       pieHole: 0.5,
       pieSliceText: 'value',
       legend: 'none',
-      title: 'For All Branches'
+      title: 'For All Branches',
+      slices: {
+            0: { color: '#068481' },
+            1: { color: '#065c84' }
+          }
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
@@ -314,21 +339,55 @@
   google.charts.setOnLoadCallback(drawChart);
 
   function drawChart() {
-
+    var cplaced = parseInt(document.getElementById("NotPlaced").textContent)
+    var cnotplaced = parseInt(document.getElementById("Placed").textContent)
     var data = google.visualization.arrayToDataTable([
       ['Status', 'Value'],
-      ['Placed', 65],
-      ['Not Placed', 40],
+      ['Not Placed', cplaced],
+      ['Placed', cnotplaced],
     ]);
 
     var options = {
       legend: 'none',
-      title: 'For CE Branch'
+      title: 'For CE Branch',
+      slices: {
+            0: { color: '#068481' },
+            1: { color: '#065c84' }
+          }
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
     chart.draw(data, options);
+  }
+</script>
+<script type="text/javascript">
+  google.charts.load("current", { packages: ["corechart"] });
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var CE = parseInt(document.getElementById("CE").textContent)
+    var IT = parseInt(document.getElementById("IT").textContent)
+    var MECH = parseInt(document.getElementById("MECH").textContent)
+    var EXTC = parseInt(document.getElementById("EXTC").textContent)
+    var PPT = parseInt(document.getElementById("PPT").textContent)
+    var data = google.visualization.arrayToDataTable([
+        ['Department', 'Placements', { role: 'style' } ],
+        ['CE', CE, 'stroke-color: #068481; stroke-opacity: 0.6; stroke-width: 8; fill-color: #adf7f5; fill-opacity: 0.2'],
+        ['IT', IT, 'stroke-color: #068481; stroke-opacity: 0.6; stroke-width: 8; fill-color: #adf7f5; fill-opacity: 0.2'],
+        ['EXTC', MECH, 'stroke-color: #068481; stroke-opacity: 0.6; stroke-width: 8; fill-color: #adf7f5; fill-opacity: 0.2'],
+        ['MECH', EXTC, 'stroke-color: #068481; stroke-opacity: 0.6; stroke-width: 8; fill-color: #adf7f5; fill-opacity: 0.2'],
+        ['PPT', PPT, 'stroke-color: #068481; stroke-opacity: 0.6; stroke-width: 8; fill-color: #adf7f5; fill-opacity: 0.2']
+      ]);
+      var options = {
+        title: "Students Placed from each Department",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+
+      var chart = new google.visualization.BarChart(document.getElementById("barchart"));
+      chart.draw(data, options);
   }
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -356,12 +415,10 @@
 	};
 
 
-$('#number1').jQuerySimpleCounter({end: 12,duration: 3000});
-$('#number2').jQuerySimpleCounter({end: 55,duration: 3000});
+$('#number1').jQuerySimpleCounter({end: 2,duration: 3000});
+$('#number2').jQuerySimpleCounter({end: parseInt(document.getElementById("Placed").textContent),duration: 3000});
 $('#number3').jQuerySimpleCounter({end: 6,duration: 2000});
 $('#number4').jQuerySimpleCounter({end: 5,duration: 2500});
 
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
 </html>

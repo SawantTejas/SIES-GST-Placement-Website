@@ -193,7 +193,7 @@
             <i class="fa fa-clock"></i>
             <p id="number4" class="number">5</p>
             <span></span>
-            <p>Recent placemnts</p>
+            <p>Recent placements</p>
           </div>
         </div>
       </div>
@@ -286,7 +286,7 @@
         </div>
       </section>
       <br><br>
-      <div>
+      <div style="display: none">
           <h1 id = "NotPlaced"><%= stud%></h1>
           <h1 id = "Placed"><%= placed%></h1>
           <h1 id = "CE"><%= ce%></h1>
@@ -419,7 +419,7 @@
 	};
 
 
-$('#number1').jQuerySimpleCounter({end: 12,duration: 3000});
+$('#number1').jQuerySimpleCounter({end: 2,duration: 3000});
 $('#number2').jQuerySimpleCounter({end: parseInt(document.getElementById("Placed").textContent),duration: 3000});
 $('#number3').jQuerySimpleCounter({end: 6,duration: 2000});
 $('#number4').jQuerySimpleCounter({end: 5,duration: 2500});

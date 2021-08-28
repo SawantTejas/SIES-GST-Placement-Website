@@ -104,7 +104,7 @@
   google.charts.load("current", { packages: ["corechart"] });
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
-    var cgpi = parseFloat(10)
+    var cgpi = parseFloat(7.95)
     var max = 10 - cgpi
     console.log(max)
     var data = google.visualization.arrayToDataTable([
@@ -129,12 +129,12 @@
   google.charts.load('current', { 'packages': ['corechart'] });
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
-    var cgpi1 = parseFloat(10)
-    var cgpi2 = parseFloat(9)
-    var cgpi3 = parseFloat(8)
-    var cgpi4 = parseFloat(7)
-    var cgpi5 = parseFloat(8)
-    var cgpi6 = parseFloat(9)
+    var cgpi1 = parseFloat(6.39)
+    var cgpi2 = parseFloat(7)
+    var cgpi3 = parseFloat(7.62)
+    var cgpi4 = parseFloat(7.93)
+    var cgpi5 = parseFloat(9.26)
+    var cgpi6 = parseFloat(9.54)
     var data = google.visualization.arrayToDataTable([
       ['Semester', 'SGPI'],
       ['Sem I', cgpi1],
@@ -165,7 +165,7 @@
       x.style.display = "none";
     }
   }
-  var cgpit = parseFloat(9)
+  var cgpit = parseFloat(7.95)
   var percent = 7.4 * cgpit + 12
   document.getElementById("percent").innerHTML = 'Equivalent percentage = ' + percent
 </script>
