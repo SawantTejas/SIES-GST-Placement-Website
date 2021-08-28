@@ -10,16 +10,14 @@
 </head>
 
 <body>
-	<form action="scgpiform" method="POST">
+	<form action="/adminannounceform" method="POST">
+		<label for="title"><strong>Title</strong></label><br>
+		<input type="text" name="annstitle" placeholder="Enter Title" class="title" />
+        <label for="description"><strong>Description</strong></label><br>
+		<textarea rows="4" cols="50" name="annsdescription" placeholder="Description" class="description"></textarea>
 		
-		<label for="wdym"><strong>CGPI</strong></label><br>
-		<input type="number" name="scgpi" placeholder="Enter your CGPI" class="wdym" />
-        <label for="title"><strong>Skills</strong></label><br>
-		<input type="text" name="sskill" placeholder="Enter your name" class="title" />
-        <label for="title"><strong>Achivements</strong></label><br>
-		<input type="text" name="sachive" placeholder="Enter your name" class="title" />
-		
-		
+		<label for="avatar"><strong>Link</strong></label>
+		<input type="text" name="annslink" placeholder="Enter Url of your link" class="title" />
 		<input name="submit" class="btn" type="submit" value="Update"/>
 	</form>
 </body>

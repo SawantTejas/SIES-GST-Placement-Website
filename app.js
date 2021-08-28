@@ -563,7 +563,13 @@ app.get("/tannouncements", function (req, res) {
         console.log(err);
         res.redirect("/error");
       } else {
-        res.render("teacheranno");
+        Announcements.find({}, function (err, allDetails) {
+          if (err) {
+            console.log(err);
+          } else {
+            res.render("teacheranno", { details: allDetails });
+          }
+        });
       }
     });
   } else {
@@ -640,7 +646,13 @@ app.get("/announce", function (req, res) {
         console.log(err);
         res.redirect("/error");
       } else {
-        res.render("adminannounce");
+        Announcements.find({}, function (err, allDetails) {
+          if (err) {
+            console.log(err);
+          } else {
+            res.render("adminannounce", { details: allDetails });
+          }
+        });
       }
     });
   } else {
@@ -840,7 +852,7 @@ app.get("/users", function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render("edit", { details: allDetails });
+      res.render("users", { details: allDetails });
     }
   });
 });
@@ -1066,7 +1078,35 @@ app.post("/announceform", function (req, res) {
     annslink: req.body.annslink,
   });
   announcedetail.save();
-  res.redirect("/announceform");
+  res.redirect("/tannouncements");
+});
+
+app.get("/adminannounceform", function (req, res) {
+  if (!user1) {
+    res.redirect("/error");
+  }
+  if (user1.role == "Admin") {
+    Admin.findOne({ username: user1.username }, function (err, teacher) {
+      if (err) {
+        console.log(err);
+        res.redirect("/error");
+      } else {
+        res.render("form5");
+      }
+    });
+  } else {
+    res.redirect("/error");
+  }
+});
+
+app.post("/adminannounceform", function (req, res) {
+  var announcedetail = new Announcements({
+    annstitle: req.body.annstitle,
+    annsdescription: req.body.annsdescription,
+    annslink: req.body.annslink,
+  });
+  announcedetail.save();
+  res.redirect("/announce");
 });
 
 app.listen(3000, function () {

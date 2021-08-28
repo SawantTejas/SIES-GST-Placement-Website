@@ -30,7 +30,7 @@
         <div class="nav_list">
           <a href="dashboard_admin" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a>
           <a href="users" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Users</span> </a>
-          <a href="messages" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">Messages</span> </a>
+          
           <a href="announce" class="nav_link active"> <i class='bx bxs-megaphone nav_icon'></i><span class="nav_name">Announcements</span> </a> 
           <a href="statistics" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i><span class="nav_name">Stats</span> </a> </div>
       </div> <a href="logout" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
@@ -46,39 +46,26 @@
       
      </div>
      <div class="col-md-2 col-sm-4 col-4">
-       <button type="button" class="btn btn-primary" onclick="chngview('makeanno')">Make Announcement</button>
+      <a href="adminannounceform" class="btn btn-primary" style="margin-top: 2%; float: right;">Make Announcements</a>
      </div>
    </div>
-   <section id="makeanno" style="display: none;">
-     <form id="form" class="topBefore">
-       <input id="name" type="text" placeholder="TO">
-       <input id="email" type="text" placeholder="SUBJECT">
-       <textarea id="message" type="text" placeholder="MESSAGE"></textarea>
-       <input id="submit" type="submit" value="GO!">
-     </form>
-   </section><br>
+   
    <div style="margin-left: 5%; margin-right: 5%;">
-     <div class="card" style="width: auto;">
-       <div class="card-body">
-         <h3 class="card-title">Quantitative Aptitude Test</h3>
-         <h6 class="card-subtitle mb-2 text-muted">Test</h6>
-         <p class="card-text">All students are required to attempt this test on or before 1st August, to practice and
-           improve their aptitude skills</p>
-         <a href="#" class="card-link">Test Link</a>
-       </div>
-     </div><br>
+    <% if(details!=null) { %>
+      <% details.forEach(function(item){ %>
+    <div class="card" style="width: auto;">
+      <div class="card-body">
+        <h3 class="card-title"><%= item.annstitle %></h3>
+        <h6 class="card-subtitle mb-2 text-muted"></h6>
+        <p class="card-text"><%= item.annsdescription %></p>
+        <a href="<%= item.annslink %>" class="card-link">Link</a>
+      </div>
+    </div><br>
+    <% }) %>
+    <% } %><br><br>
  
-     <div class="card" style="width: auto;">
-       <div class="card-body">
-         <h3 class="card-title">Conduct Aptitude tests for students of your branch</h3>
-         <h6 class="card-subtitle mb-2 text-muted">To teachers</h6>
-         <p class="card-text"> Head of Department of all branches are required to conduct aptitude test of their
-           respective
-           Departments.</p>
-         <a href="#" class="card-link">Application Link</a>
-         <a href="#" class="card-link">Company Info</a>
-       </div>
-     </div><br>
+     
+     </div>
  
  
      <br><br>
