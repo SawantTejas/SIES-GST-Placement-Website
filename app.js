@@ -309,7 +309,48 @@ app.get("/tplacement", function(req, res){
         res.redirect("/error");
       }
       else{
-  res.render("teacherplacement");
+  Student.find({placement_Status: "Not Placed"},function(req,np_students){
+    if(err){
+      console.log(err);
+    }
+    Student.find({placement_Status: 'Placed'},function(req,placed_students){
+      if(err){
+        console.log(err);
+      }
+      Student.find({placement_Status: 'Placed', department: 'CE'},function(req,ce_p){
+        if(err){
+          console.log(err);
+        }
+        Student.find({placement_Status: 'Placed', department: 'IT'},function(req,it_p){
+          if(err){
+            console.log(err);
+          }
+          Student.find({placement_Status: 'Placed', department: 'MECH'},function(req,mech_p){
+            if(err){
+              console.log(err);
+            }
+            Student.find({placement_Status: 'Placed', department: 'EXTC'},function(req,extc_p){
+              if(err){
+                console.log(err);
+              }
+              Student.find({placement_Status: 'Placed', department: 'PPT'},function(req,ppt_p){
+                if(err){
+                  console.log(err);
+                }
+                Placement.find({},function(req, placementdata){
+                  if(err){
+                    console.log(err);
+                  }
+    res.render("teacherplacement",{stud: np_students.length, placed: placed_students.length, ce: ce_p.length, it: it_p.length, mech: mech_p.length, extc: extc_p.length, ppt: ppt_p.length, placement: placementdata});
+  })
+  })
+  })
+  })
+  })
+  })  
+  })
+  })
+
 }
 });
 }else{
