@@ -3,7 +3,7 @@ const placementSchema = {
     company: String,
     stipend: String,
     role: String,
-    campus: String,
+    year: String,
     prn: String,
   };
   
