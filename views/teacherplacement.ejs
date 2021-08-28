@@ -286,22 +286,22 @@
         </div>
       </section>
       <br><br>
+      <div>
+          <h1 id = "NotPlaced"><%= stud%></h1>
+          <h1 id = "Placed"><%= placed%></h1>
+          <h1 id = "CE"><%= ce%></h1>
+          <h1  id = "IT"><%= it%></h1>
+          <h1 id = "MECH"><%= mech%></h1>
+          <h1 id = "EXTC"><%= extc%></h1>
+          <h1 id = "PPT"><%= ppt%></h1>
+          <table> <!-- Table for placement data-->
+            <% placement.forEach(function(item){ %>
+              <td>HIIII</td>
+            <% }) %>
+          </table>
+      </div>
     </div>
   </div>
-<div style = "display:none">
-    <h1 id = "NotPlaced"><%= stud%></h1>
-      <h1 id = "Placed"><%= placed%></h1>
-        <h1 id = "CE"><%= ce%></h1>
-          <h1  id = "IT"><%= it%></h1>
-        <h1 id = "MECH"><%= mech%></h1>
-      <h1 id = "EXTC"><%= extc%></h1>
-    <h1 id = "PPT"><%= ppt%></h1>
-    <table> <!-- Table for placement data-->
-    <% placement.forEach(function(item){ %>
-      <td></td>
-      <% }) %>
-      </table>
-</div>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

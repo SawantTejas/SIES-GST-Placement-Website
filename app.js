@@ -130,6 +130,7 @@ app.get("/addplacement", function(req,res){
 app.get("/logout", function(req, res){
   req.logout();
   res.redirect("/");
+  user1=0;
 });
 
 //student
@@ -251,7 +252,20 @@ app.get("/placement", function(req, res){
         res.redirect("/error");
       }
       else{
-  res.render("studentplace");
+        Student.findOne({username: user1.username}, function (err, requser) {
+          if (err) {
+            console.log(err);
+          } else {
+            Placement.find({prn: requser.prn},function(req, placementdata){
+              if(err){
+                console.log(err);
+              } else{
+                res.render("studentplace", {placedata: placementdata});
+                console.log(placementdata);          
+              }
+            })
+          }
+        })
 }
 });
 } else{

@@ -85,42 +85,19 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th scope="col">#</th>
             <th scope="col">Organization</th>
             <th scope="col">Package</th>
-            <th scope="col">Reached</th>
-            <th scope="col">Placed</th>
+            <th scope="col">Post</th>
           </tr>
         </thead>
         <tbody>
+          <% placedata.forEach(function(item){ %>
           <tr>
-            <th scope="row">1</th>
-            <td>Continuum</td>
-            <td>6.5 LPA</td>
-            <td>Round 3</td>
-            <td>No</td>
+            <td><%= item.company %></td>
+            <td><%= item.stipend %></td>
+            <td><%= item.role %></td>
           </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>Google</td>
-            <td>65 LPA</td>
-            <td>Round 2</td>
-            <td>No</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>Microsoft</td>
-            <td>60 LPA</td>
-            <td>Round 1</td>
-            <td>No</td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>Amazon</td>
-            <td>20 LPA</td>
-            <td>Round 4</td>
-            <td>No</td>
-          </tr>
+          <% }) %>
         </tbody>
       </table>
     </div>

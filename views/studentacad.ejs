@@ -8,7 +8,8 @@
 
   <!-- Bootstrap CSS -->
   <link rel="icon" type="text/css" href="SIES_Spinner.png">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
@@ -17,7 +18,7 @@
   <title>SIES GST | Student Profile</title>
 </head>
 
-<body id="body-pd" class = "noselect">
+<body id="body-pd" class="noselect">
   <script src="js/main2.js"></script>
   <header class="header" id="header">
     <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
@@ -25,109 +26,91 @@
   </header>
   <div class="l-navbar" id="nav-bar">
     <nav class="nav">
-      <div> <a href="index" class="nav_logo"> <img src="img/SIES_Spinner.png" width="32" height="32"> <span class="nav_logo-name">SIES GST</span> </a>
+      <div> <a href="index" class="nav_logo"> <img src="img/SIES_Spinner.png" width="32" height="32"> <span
+            class="nav_logo-name">SIES GST</span> </a>
         <div class="nav_list">
-          <a href="dashboard" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a>
-          <a href="academics" class="nav_link active"> <i class="bi bi-book"></i> <span class="nav_name">Academics & Projects</span> </a>
-          <a href="achievements" class="nav_link"> <i class="bi bi-trophy"></i> <span class="nav_name">Achievements</span> </a>
+          <a href="dashboard" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span
+              class="nav_name">Dashboard</span> </a>
+          <a href="academics" class="nav_link active"> <i class="bi bi-book"></i> <span class="nav_name">Academics &
+              Projects</span> </a>
+          <a href="achievements" class="nav_link"> <i class="bi bi-trophy"></i> <span
+              class="nav_name">Achievements</span> </a>
           <a href="placement" class="nav_link"> <i class="bi bi-star"></i> <span class="nav_name">Placements</span> </a>
-          <a href="announcements" class="nav_link"> <i class='bx bxs-megaphone nav_icon'></i><span class="nav_name">Announcements</span> </a>
-         </div>
-      </div> <a href="logout" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
+          <a href="announcements" class="nav_link"> <i class='bx bxs-megaphone nav_icon'></i><span
+              class="nav_name">Announcements</span> </a>
+        </div>
+      </div> <a href="logout" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span
+          class="nav_name">SignOut</span> </a>
     </nav>
   </div>
   <!--Container Main start-->
   <h1 style="font-size: 60px;">Academic Performance</h1><br>
 
   <!--SGPI Graph-->
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h1>SGPI Graph</h1>
-      <div id="curve_chart" style="width: 800px; height: 400px"></div>
-    </div>
-    <div class="col">
-      <h3>CGPI</h3>
-      <h1 id="cgpi">9</h1>
-      <h6 id = "percent">Equivalent Percentage: 70.87</h6>
-      <p>Dead KTs: 0 &nbsp &nbsp Live KTs: 0</p>
-      <div id="donutchart" style="width: 300px; height: 300px;"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>SGPI Graph</h1>
+        <div id="curve_chart" style="width: 800px; height: 400px"></div>
+      </div>
+      <div class="col">
+        <h3>CGPI</h3>
+        <h1 id="cgpi">9</h1>
+        <h6 id="percent">Equivalent Percentage: 70.87</h6>
+        <p>Dead KTs: 0 &nbsp &nbsp Live KTs: 0</p>
+        <div id="donutchart" style="width: 300px; height: 300px;"></div>
+      </div>
     </div>
   </div>
-</div>
-<br><hr>
+  <br>
+  <hr>
 
-<a href="projform" class="btn btn-primary" style="margin-top: 2%; float: right;">Update</a>
-<h1 style="font-size: 60px;">Projects</h1><br>
-<div style="margin-left: 5%; margin-right: 5%;">
-  <% if(details!=null) { %>
-    <% details.forEach(function(item){ %>
-      <div class="card">
-        <div class="card-header">
-          <%= item.pswdym %>
-        </div>
-        <div class="card-body">
-          <h4 class="card-title"><%= item.pstitle %></h4>
-          <p class="card-text"><%= item.psdesc %></p>
-          <p class="card-text">Languages and Technologies: HTML, CSS, PHP</p>
-          <a href="#" class="btn btn-primary">View Screenshots</a>
-        </div>
-      </div><br>
-    <% }) %>
-  <% } %>
-  <div class="card">
-    <div class="card-header">
-      Mini Project(Semester V WDL)
-    </div>
-    <div class="card-body">
-      <h4 class="card-title">Student Assignment Submission Website</h4>
-      <p class="card-text">Description: A website where Teachers can assign assignments to the students, and the Students can upload the assignmen befor the deadline, failing which "Turned in late" remark would be shown in their submission. The teacher can then grade the submissions accordingly. The website will also provide Statistics of how many students submitted on time, marks distribution, etc for each assignment task.</p>
-      <p class="card-text">Languages and Technologies: HTML, CSS, PHP</p>
-      <div class="d-flex">
-        <div class="col-md-10 col-10">
-          <p style="font-weight: bold;">Grade: O</p>
-        </div>
-        <div class="col-md-2 col-2">
-          <a href="#" class="btn btn-primary">View Screenshots</a>
-        </div>
-      </div>
-    </div>
-  </div><br>
-  <div class="card">
-    <div class="card-header">
-      Mini Project(Semester VI)
-    </div>
-    <div class="card-body">
-      <h4 class="card-title">EHR storage system using Blockchain</h4>
-      <p class="card-text">Description: A Decentralized Electronic Health records system using blockchain, where patients can upload their medical records and grant or revoke access to the doctor on the Blockchain network. The Doctors can view all the medical records they have been given access to. Blockchain ensures only the authorized users can access the data.</p>
-      <p class="card-text">Languages and Technologies: Blockchain, HTML, CSS, Solidity, Nodejs</p>
-      <div class="d-flex">
-        <div class="col-md-10 col-10">
-          <p style="font-weight: bold;">Grade: O</p>
-        </div>
-        <div class="col-md-2 col-2">
-          <a href="#" class="btn btn-primary">View Screenshots</a>
-        </div>
-      </div>
-    </div>
-  </div><br>
-
-
+  <a href="projform" class="btn btn-primary" style="margin-top: 2%; float: right;">Add Project</a>
+  <h1 style="font-size: 60px;">Projects</h1><br>
+  <div style="margin-left: 5%; margin-right: 5%;">
+    <% if(details!=null) { %>
+      <% details.forEach(function(item){ %>
+        <div class="card">
+          <div class="card-header">
+            <%= item.pswdym %>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">
+              <%= item.pstitle %>
+            </h4>
+            <p class="card-text">
+              <%= item.psdesc %>
+            </p>
+            <div class="d-flex">
+              <div class="col-md-10 col-10">
+                <p class="card-text">Languages and Technologies: HTML, CSS, PHP</p>
+              </div>
+              <div class="col-md-2 col-2">
+                <a href="#" class="btn btn-primary">Github Repository</a>
+              </div>
+            </div>
+          </div>
+        </div><br>
+      <% }) %>
+    <% } %>
+  </div>
+  <br><br>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script type="text/javascript">
-  google.charts.load("current", {packages:["corechart"]});
+  google.charts.load("current", { packages: ["corechart"] });
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
     var cgpi = parseFloat(10)
-    var max =10 - cgpi
+    var max = 10 - cgpi
     console.log(max)
     var data = google.visualization.arrayToDataTable([
       ['CGPI', 'Value'],
-      ['CGPI',     cgpi],
-      ['Pointer remaining',     max],
+      ['CGPI', cgpi],
+      ['Pointer remaining', max],
 
     ]);
 
@@ -143,7 +126,7 @@
 </script>
 
 <script type="text/javascript">
-  google.charts.load('current', {'packages':['corechart']});
+  google.charts.load('current', { 'packages': ['corechart'] });
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
     var cgpi1 = parseFloat(10)
@@ -153,38 +136,38 @@
     var cgpi5 = parseFloat(8)
     var cgpi6 = parseFloat(9)
     var data = google.visualization.arrayToDataTable([
-          ['Semester', 'SGPI'],
-          ['Sem I', cgpi1],
-          ['Sem II',  cgpi2],
-          ['Sem III',  cgpi3],
-          ['Sem IV',  cgpi4],
-          ['Sem V',  cgpi5],
-          ['Sem VI',  cgpi6]
-        ]);
+      ['Semester', 'SGPI'],
+      ['Sem I', cgpi1],
+      ['Sem II', cgpi2],
+      ['Sem III', cgpi3],
+      ['Sem IV', cgpi4],
+      ['Sem V', cgpi5],
+      ['Sem VI', cgpi6]
+    ]);
 
     var options = {
-          title: 'Semester wise SGPI Graph',
-          legend: { position: 'bottom' }
-        };
+      title: 'Semester wise SGPI Graph',
+      legend: { position: 'bottom' }
+    };
 
     var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
     chart.draw(data, options);
   }
 
-      //script for individual marksheet
-    function chngview(mila_id){
-      var x = document.getElementById(mila_id);
-        if (x.style.display == "none") {
-          x.style.display = "block";
-        }
-        else {
-          x.style.display = "none";
-        }
+  //script for individual marksheet
+  function chngview(mila_id) {
+    var x = document.getElementById(mila_id);
+    if (x.style.display == "none") {
+      x.style.display = "block";
     }
-    var cgpit =  parseFloat(9)
-    var percent = 7.4*cgpit+12
-    document.getElementById("percent").innerHTML = 'Equivalent percentage = '+percent
-    </script>
+    else {
+      x.style.display = "none";
+    }
+  }
+  var cgpit = parseFloat(9)
+  var percent = 7.4 * cgpit + 12
+  document.getElementById("percent").innerHTML = 'Equivalent percentage = ' + percent
+</script>
 
 </html>
